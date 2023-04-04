@@ -3,14 +3,14 @@ import NavbarApp from "../components/NavbarApp";
 import HomeScreen from "../pages/HomeScreen";
 
 const MainRoutes = () => {
-  return (
-    <>
-      <NavbarApp/>
-      <Routes>
-        <Route path="/" element={<HomeScreen />} />
-      </Routes>
-    </>
-  );
+	return (
+		<>
+			<NavbarApp />
+			<Routes>
+				<Route path="/" element={<HomeScreen />} />
+			</Routes>
+		</>
+	);
 };
 
 export default MainRoutes;
