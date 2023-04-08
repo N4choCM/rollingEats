@@ -9,7 +9,7 @@ const {
 	deleteMenuById,
 } = require("../controllers/MenuController");
 const { isMenuByIdUnique } = require("../helpers/DBValidator");
-const { validateJWT } = require("../middlewares/JWTGenerator");
+const { validateJWT } = require("../middlewares/JWTValidator");
 const { isUserAdmin } = require("../middlewares/RoleValidator");
 
 const router = Router();
