@@ -7,7 +7,7 @@ const OrderSchema = Schema({
     required: true,
   },
   date: {
-    type: Number,
+    type: Date,
     default: 0,
   },
   menu: {
