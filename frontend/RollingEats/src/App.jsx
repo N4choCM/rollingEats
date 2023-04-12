@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
+import LoginScreen from "./pages/LoginScreen";
+import MainRoutes from "./routes/MainRoutes";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [login, setLogin] = useState(false);
+  const [user, setUser] = useState(null);
+
+  // Saves the data of the logged in user.
+  const saveUser = (data) => {
+    setUser(data);
+  };
+
+  const loginUser = () => {
+    setLogin(true);
+  };
+
+  const logoutUser = () => {
+    setLogin(false);
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* Protected routes receiving login, user data and logoutUser function. */}
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoutes login={login}>
+              <MainRoutes logoutUser={logoutUser} user={user} />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* Login route receiving function to login and save the user data. */}
+        <Route
+          path="/login"
+          element={
+            <LoginScreen
+              loginUser={loginUser}
+              saveUser={saveUser}
+            />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
