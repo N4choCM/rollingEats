@@ -1,14 +1,14 @@
 import React from "react";
 import "../css/navbar.css";
+import { Link, NavLink } from "react-router-dom";
 
-const NavbarApp = () => {
-  return;
-  <div>
+const NavbarApp = ({ cambiarLogin }) => {
+  return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           Logo
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,7 +21,7 @@ const NavbarApp = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="#">
                 Inicio
@@ -44,30 +44,38 @@ const NavbarApp = () => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <NavLink className="dropdown-item" to="#">
                     Pedidos
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <NavLink className="dropdown-item" to="#">
                     Menus
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <NavLink className="dropdown-item" to="#">
                     Usuarios
-                  </a>
+                  </NavLink>
+                </li>
+                <li>
+                  <button
+                    onClick={cambiarLogin}
+                    className="btn btn-outline-light"
+                  >
+                    Log out
+                  </button>
                 </li>
               </ul>
             </li>
           </ul>
         </div>
-        <button className="btn btn-outline-success" type="submit">
+        <Link className="btn btn-outline-success" type="submit" to="/login">
           Inciar Sesion
-        </button>
+        </Link>
       </div>
     </nav>
-  </div>;
+  );
 };
 
 export default NavbarApp;
