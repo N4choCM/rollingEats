@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-//import FooterApp from "../components/FooterApp";
+import FooterApp from "../components/FooterApp";
 import NavbarApp from "../components/NavbarApp";
 import OrderScreen from "../pages/OrderScreen";
 import AdminScreen from "../pages/AdminScreen";
