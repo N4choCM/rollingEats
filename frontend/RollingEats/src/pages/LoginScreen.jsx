@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
-const LoginScreen = () => {
+const LoginScreen = ({ cambiarLogin }) => {
   const navigate = useNavigate(); //Variable que me traera todas las funciones del useNavigate
   const [formValues, setFormValues] = useState({
     email: "",
@@ -31,6 +31,7 @@ const LoginScreen = () => {
       showMessage(true);
     }
     if (email === user.email && password === user.password) {
+      cambiarLogin();
       navigate("/");
     } else {
       alert("Email o password incorrecto");
