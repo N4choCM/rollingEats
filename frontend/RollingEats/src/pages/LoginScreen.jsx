@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
-const LoginScreen = ({ cambiarLogin }) => {
+const LoginScreen = ({ loginUser }) => {
   const navigate = useNavigate(); //Variable que me traera todas las funciones del useNavigate
   const [formValues, setFormValues] = useState({
     email: "",
@@ -31,7 +31,7 @@ const LoginScreen = ({ cambiarLogin }) => {
       showMessage(true);
     }
     if (email === user.email && password === user.password) {
-      cambiarLogin();
+      loginUser();
       navigate("/");
     } else {
       alert("Email o password incorrecto");
@@ -43,7 +43,7 @@ const LoginScreen = ({ cambiarLogin }) => {
   };
 
   return (
-    <div>
+    <div className="d-flex row justify-content-center border border-danger m-5">
       <div className="container">
         <div className="row mt-5">
           <div className="col text-center">

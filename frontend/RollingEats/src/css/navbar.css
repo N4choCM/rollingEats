@@ -1,3 +1,21 @@
 .navbar{
   background-color: #4c4c6d;
 }
+
+.modif-logo{
+  height: 100px;
+  width: 110px;
+  border-radius: 100%;
+}
+
+p{
+  color: goldenrod;
+  font-size: x-large;
+}
+ul.dropdown-menu>li.active>a:hover{
+  background: #419641 !important;
+}
+
+ul.dropdown-menu > li.active >a{
+  background: goldenrod !important;
+}
