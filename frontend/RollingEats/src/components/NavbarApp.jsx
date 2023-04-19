@@ -4,8 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 
 const NavbarApp = ({ logoutUser }) => {
   return (
-    <div className="grid grid-col-12 m-3">
-      <div className="col-span-3">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
             className="modif-logo"
@@ -13,61 +13,70 @@ const NavbarApp = ({ logoutUser }) => {
             alt="logo"
           />
         </Link>
-      </div>
-      <div
-        className="collapse navbar-collapse col-span-6"
-        id="navbarNavDropdown"
-      >
-        <a className="nav-link active" aria-current="page" href="#">
-          <p>Inicio</p>
-        </a>
-        <a className="nav-link" href="#">
-          <p>Pedidos</p>
-        </a>
-        <a
-          className="nav-link dropdown-toggle"
-          href="#"
-          role="button"
-          data-bs-toggle="dropdown"
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
           aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <p>Admi</p>
-        </a>
-        <ul className="dropdown-menu">
-          <li>
-            <NavLink className="dropdown-item" to="#">
-              Pedidos
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="dropdown-item" to="#">
-              Menus
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="dropdown-item" to="#">
-              Usuarios
-            </NavLink>
-          </li>
-          <li>
-            <hr className="dropdown-divider" />
-          </li>
-          <li>
-            <button
-              onClick={logoutUser}
-              className="btn text-dark btn-outline-danger"
-            >
-              <i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesion
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div className="col-span-3">
-        <Link className="btn btn-outline-success" type="submit" to="/login">
-          Cerrar Sesion
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div
+          className=" d-flex justify-content-center collapse navbar-collapse"
+          id="navbarNavDropdown"
+        >
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link active fs-2" aria-current="page" href="#">
+                Inicio
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link fs-2"
+                href="OrderScreen.jsx" //Ver esto
+              >
+                Pedidos
+              </a>
+            </li>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle fs-2"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Admi
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="#">
+                    Menu
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="#">
+                    Pedidos
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="#">
+                    Usuarios
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <Link className="btn btn-outline-danger" type="submit" to="/login">
+          <i className="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesion
         </Link>
       </div>
-    </div>
+    </nav>
   );
 };
 

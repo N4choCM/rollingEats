@@ -28,34 +28,37 @@ const LoginScreen = ({ loginUser }) => {
     const { email, password } = formValues;
 
     if (!email) {
-      showMessage(true);
+      setShowMessage(true);
     }
     if (email === user.email && password === user.password) {
       loginUser();
       navigate("/");
     } else {
-      alert("Email o password incorrecto");
+      alert("Email o contraseña incorrecta");
     }
 
     if (!password) {
-      showMessage(true);
+      setShowMessage(true);
     }
   };
 
   return (
-    <div className="d-flex row justify-content-center border border-danger m-5">
-      <div className="container">
-        <div className="row mt-5">
-          <div className="col text-center">
-            <h3>Sign in to Restaurant Eats</h3>
-          </div>
+    <div className="container d-flex justify-content-center align-content-center card border-success mt-5 w-50">
+      <div className="card-header bg-transparent border-success row">
+        <div className="col text-center">
+          <img
+            className="modif-logo"
+            src="src/assets/rollingEatsLogo2.jpg"
+            alt="logo"
+          />
+          <h3>Ingresar a Restaurant Eats</h3>
         </div>
       </div>
-      <div className="row">
+      <div className="card-body text-success row">
         <div className="col col-md-6 offset-md-3">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3 d-grid">
-              <label>Email</label>
+          <form className="needs-validation" onSubmit={handleSubmit}>
+            <div className="form-group was-validated mb-3 d-grid">
+              <label className="form-label">Email</label>
               <input
                 type="email"
                 className="form-control"
@@ -63,12 +66,15 @@ const LoginScreen = ({ loginUser }) => {
                 value={formValues.email}
                 onChange={handleChange}
               />
+              <div className="invalid-feedback">
+                Por favor introduzca su email correctamente
+              </div>
               {showMessage && (
                 <p className="text-danger m-0">Faltan datos del campo</p>
               )}
             </div>
-            <div className="mb-3 d-grid">
-              <label>Password</label>
+            <div className="form-group was-validated mb-3 d-grid">
+              <label className="form-label">Contraseña</label>
               <input
                 type="password"
                 className="form-control"
@@ -80,10 +86,27 @@ const LoginScreen = ({ loginUser }) => {
                 <p className="text-danger m-0">Faltan datos del campo</p>
               )}
             </div>
+            <div className="form-group mb-3">
+              <input type="checkbox" className="form-check-input" />
+              <label htmlFor="check" className="form-check-label">
+                Recordar usuario
+              </label>
+            </div>
             <div className="mb-3 d-grid">
-              <button className="btn btn-success">Sign in</button>
+              <button className="btn btn-success">Ingresar</button>
             </div>
           </form>
+        </div>
+      </div>
+      <div className="card-footer bg-transparent border-success row text-center">
+        <div className="col">
+          <span>
+            ¿No puedes ingresar? <a href="">Recuperar contraseña</a>
+          </span>
+          <br />
+          <span>
+            No tienes cuenta aun? <a href="">!Registrate!</a>
+          </span>
         </div>
       </div>
     </div>
