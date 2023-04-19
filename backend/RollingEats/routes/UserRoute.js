@@ -5,8 +5,8 @@ const { validateFields } = require("../middlewares/FieldValidator");
 const {
   getUsers,
   getUserById,
-  createUser,
-  editUser,
+  register,
+  editUserById,
   deleteUserById,
 } = require("../controllers/UserController");
 
@@ -47,7 +47,7 @@ router.post(
     check("role").custom(isRoleValid),
     validateFields,
   ],
-  createUser
+  register
 );
 
 router.put(
@@ -59,7 +59,7 @@ router.put(
     check("rol").custom(isRoleValid),
     validateFields,
   ],
-  editUser
+  editUserById
 );
 
 router.delete(
