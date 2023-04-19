@@ -67,7 +67,7 @@ router.delete(
   [
     validateJWT,
     isUserAdmin,
-    check("id", "No es un ID válido").isMongoId(),
+    check("id", "No es un ID válido.").isMongoId(),
     check("id").custom(isUserByIdUnique),
     validateFields,
   ],
