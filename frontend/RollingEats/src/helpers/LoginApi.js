@@ -12,8 +12,8 @@ export const login = async (data) => {
 
     const data = await resp.json();
     return data;
-  } catch (error) {
-    console.log(error);
-    return { msg: "No se consiguió establecer la conexión con el backend." };
+  } catch (e) {
+    console.log(e);
+    return { message: "No se consiguió establecer la conexión con el backend." };
   }
 };
