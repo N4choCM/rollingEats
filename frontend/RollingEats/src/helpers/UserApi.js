@@ -31,7 +31,7 @@ export const getUserById = async (id) => {
   }
 };
 
-export const createUser = async (data) => {
+export const register = async (data) => {
   try {
     const resp = await fetch(url, {
       method: "POST",
