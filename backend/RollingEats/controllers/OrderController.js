@@ -27,14 +27,23 @@ const getOrderById = async (req = request, res = response) => {
 };
 
 // Creates an Order.
-const createOrder = async (req, res = response) => {
+const createOrder = async (req = request, res = response) => {
 	const { date, delivered, status } = req.body;
+
+	const orderDB = await Order.findOne({ date });
+
+	// Validates if the menu exists in the DB.
+	if (orderDB) {
+		return res.status(400).json({
+			message:  "Ya existe la petición.",
+		});
+	}
 
 	// Generation of the data to be stored in the DB.
 	const data = {
-		user: req.user._id,
+		menu: req.menus._id,
+		user,
 		date,
-		menu: req.menu._id,
 		delivered,
 		status,
 	};
@@ -43,12 +52,12 @@ const createOrder = async (req, res = response) => {
 	await order.save();
 	res.status(201).json({
 		order,
-		msg: "¡Pedido creado con éxito!",
+		message: "¡Pedido creado con éxito!",
 	});
 };
 
 // Updates an Order.
-const editOrder = async (req, res) => {
+const editOrderById = async (req, res) => {
 	const { id } = req.params;
 	const { date, delivered, status } = req.body;
   const user = req.user._id;
@@ -89,6 +98,6 @@ module.exports = {
 	getOrders,
 	getOrderById,
 	createOrder,
-	editOrder,
+	editOrderById,
 	deleteOrderById,
 };
