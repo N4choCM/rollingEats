@@ -56,7 +56,7 @@ router.put(
     validateJWT,
     check("id", "El ID no es válido.").isMongoId(),
     check("id").custom(isUserByIdUnique),
-    check("rol").custom(isRoleValid),
+    check("role").custom(isRoleValid),
     validateFields,
   ],
   editUserById
