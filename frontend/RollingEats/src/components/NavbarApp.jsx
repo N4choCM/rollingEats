@@ -1,78 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/navbar.css";
 import { Link, NavLink } from "react-router-dom";
 
-const NavbarApp = ({ cambiarLogin }) => {
+const NavbarApp = ({ logoutUser }) => {
   return (
-    <nav className="navbar navbar-expand-lg">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          Logo
+    <nav id="header" className="fixed navbar-expand-lg">
+      <div className="container d-flex align-items-center">
+        <Link className="logo mr-auto" to="/">
+          <img
+            className="modif-logo"
+            src="src/assets/rollingEatsLogo2.jpg"
+            alt="logo"
+          />
         </Link>
         <button
-          className="navbar-toggler"
+          class="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Inicio
-              </a>
+        <nav className="nav-menu collapse navbar-collapse d-none d-lg-block">
+          <ul className="d-flex">
+            <li className="active">
+              <Link to="/">
+                <a>Inicio</a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pedidos
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Admi
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <NavLink className="dropdown-item" to="#">
-                    Pedidos
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="dropdown-item" to="#">
-                    Menus
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="dropdown-item" to="#">
-                    Usuarios
-                  </NavLink>
-                </li>
-                <li>
-                  <button
-                    onClick={cambiarLogin}
-                    className="btn btn-outline-light"
-                  >
-                    Log out
-                  </button>
-                </li>
-              </ul>
+            <li>
+              <Link to="/order">
+                <a>Pedidos</a>
+              </Link>
             </li>
           </ul>
+        </nav>
+        <div className="d-flex w-100 justify-content-end">
+          <li
+            className="dropdown-toggle m-1 fs-5"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa fa-user" aria-hidden="true"></i>Admin
+            <ul className="dropdown-menu">
+              <li>
+                <NavLink className="dropdown-item">
+                  <a>Menu</a>
+                </NavLink>
+              </li>
+              <li>
+                <li>
+                  <NavLink className="dropdown-item">
+                    <a>Pedidos</a>
+                  </NavLink>
+                </li>
+              </li>
+              <li>
+                <li>
+                  <NavLink className="dropdown-item">
+                    <a>Usuarios</a>
+                  </NavLink>
+                </li>
+              </li>
+            </ul>
+          </li>
+          <Link
+            className="btn btn-outline-danger h-50"
+            type="submit"
+            to="/login"
+          >
+            <i className="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesion
+          </Link>
         </div>
-        <Link className="btn btn-outline-success" type="submit" to="/login">
-          Inciar Sesion
-        </Link>
       </div>
     </nav>
   );
