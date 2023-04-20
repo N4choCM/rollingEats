@@ -57,7 +57,7 @@ const LoginScreen = ({ loginUser }) => {
       <div className="card-body text-success row">
         <div className="col col-md-6 offset-md-3">
           <form className="needs-validation" onSubmit={handleSubmit}>
-            <div className="form-group was-validated mb-3 d-grid">
+            <div className="form-group was-validated  mb-3 d-grid">
               <label className="form-label">Email</label>
               <input
                 type="email"
@@ -101,11 +101,18 @@ const LoginScreen = ({ loginUser }) => {
       <div className="card-footer bg-transparent border-success row text-center">
         <div className="col">
           <span>
-            ¿No puedes ingresar? <a href="">Recuperar contraseña</a>
+            ¿Te olvidaste la contraseña?
+            <a href="src/pages/ErrorScreen.jsx" target="black">
+              {" "}
+              Recuperar contraseña
+            </a>
           </span>
           <br />
           <span>
-            No tienes cuenta aun? <a href="">!Registrate!</a>
+            No tienes cuenta aun?{" "}
+            <a href="src/pages/ErrorScreen.jsx" target="black">
+              !Registrate!
+            </a>
           </span>
         </div>
       </div>

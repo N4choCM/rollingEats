@@ -8,6 +8,8 @@ body{
   height: 100vh;
   background-image: url(src/assets/fondoLogin.jpg);
 }
+
+
 /* .card{
   --bs-card-bg: #D9B08C;
   background-color: var(--bs-card-bg);
