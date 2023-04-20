@@ -4,8 +4,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import FooterApp from "./components/FooterApp.jsx"
-
-
 import MainRoutes from "./routes/MainRoutes";
 
 
