@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const OrderSchema = Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Users",
     required: true,
   },
   date: {
@@ -12,7 +12,7 @@ const OrderSchema = Schema({
   },
   menu: {
     type: Schema.Types.ObjectId,
-    ref: "Menu",
+    ref: "Menus",
     required: true,
   },
   //! This parameter is used to change the orders from 'pending' to 'delivered'

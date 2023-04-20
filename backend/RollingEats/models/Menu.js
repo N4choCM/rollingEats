@@ -11,6 +11,7 @@ const MenuSchema = Schema({
     },
     category:{
         type:String,
+        enum: ["VEGAN", "GLUTEN_FREE", "ITALIAN", "MEAT", "FISH", "JAPANESE", "FAST_FOOD", "MEXICAN"],
         required:[true, "La categoría es obligatoria."]
     },
     price:{
