@@ -4,17 +4,8 @@
   box-sizing:border-box;
 }
 
-body{
+.body-bg{
   height: 100vh;
+  width: 100vw;
   background-image: url(src/assets/fondoLogin.jpg);
 }
-
-
-/* .card{
-  --bs-card-bg: #D9B08C;
-  background-color: var(--bs-card-bg);
-} */
-
-
-
-
