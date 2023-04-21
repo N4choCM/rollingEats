@@ -1,119 +1,90 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../helpers/LoginApi";
+import logo from "../assets/logo.png";
 import "../css/login.css";
-const LoginScreen = ({ loginUser }) => {
-  const navigate = useNavigate(); //Variable que me traera todas las funciones del useNavigate
-  const [formValues, setFormValues] = useState({
-    email: "",
-    password: "",
-  });
 
-  const [showMessage, setShowMessage] = useState(false);
+const LoginScreen = ({ loginUser, saveUser }) => {
+  const navigate = useNavigate(); 
 
-  const handleChange = (e) => {
-    setShowMessage(false);
-    setFormValues({
-      ...formValues, //Me mantenga todo lo que tenga formValues
-      [e.target.name]: e.target.value, //Pero modificame cualquier elemento que tenga adentro segun el name por value
-    });
-  };
-  const handleSubmit = (e) => {
+
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    const user = {
-      email: "rolling@rolling.com",
-      password: "123456",
+    setLoading(true);
+    const data = {
+      email: emailInput,
+      password: passwordInput,
     };
 
-    const { email, password } = formValues;
-
-    if (!email) {
-      setShowMessage(true);
-    }
-    if (email === user.email && password === user.password) {
+    const resp = await login(data);
+    console.log(resp);
+    if (resp?.token) {
+      localStorage.setItem("token", JSON.stringify(resp.token));
       loginUser();
+      const { name, email, role, uid } = resp.user;
+      saveUser({
+        name,
+        email,
+        role,
+        uid,
+      });
       navigate("/");
-    } else {
-      alert("Email o contraseña incorrecta");
     }
-
-    if (!password) {
-      setShowMessage(true);
-    }
+    setResult(resp);
+    setLoading(false);
   };
 
   return (
-    <div className="container d-flex justify-content-center align-content-center card border-success mt-5 w-50">
-      <div className="card-header bg-transparent border-success row">
-        <div className="col text-center">
-          <img
-            className="modif-logo"
-            src="src/assets/rollingEatsLogo2.jpg"
-            alt="logo"
-          />
-          <h3>Ingresar a Restaurant Eats</h3>
-        </div>
-      </div>
-      <div className="card-body text-success row">
-        <div className="col col-md-6 offset-md-3">
-          <form className="needs-validation" onSubmit={handleSubmit}>
-            <div className="form-group was-validated  mb-3 d-grid">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                value={formValues.email}
-                onChange={handleChange}
-              />
-              <div className="invalid-feedback">
-                Por favor introduzca su email correctamente
+    <div className="bg-dark">
+      <div className="container container-login">
+        <div className="row px-2">
+          <div className="col-12 col-md-4 offset-md-4 card-login">
+            <div className="d-flex justify-content-center align-items-center">
+              <img src={logo} alt="logo" />
+            </div>
+            <h3 className="text-center mt-2">
+              <span>
+                <i className="fa fa-user-circle" aria-hidden="true"></i>{" "}
+              </span>
+              ¡Bienvenido a Rolling Eats!
+            </h3>
+            <form onSubmit={handleLogin}>
+              <div className="mt-3">
+                <label className="fw-bold">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                />
               </div>
-              {showMessage && (
-                <p className="text-danger m-0">Faltan datos del campo</p>
-              )}
-            </div>
-            <div className="form-group was-validated mb-3 d-grid">
-              <label className="form-label">Contraseña</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                value={formValues.password}
-                onChange={handleChange}
-              />
-              {showMessage && (
-                <p className="text-danger m-0">Faltan datos del campo</p>
-              )}
-            </div>
-            <div className="form-group mb-3">
-              <input type="checkbox" className="form-check-input" />
-              <label htmlFor="check" className="form-check-label">
-                Recordar usuario
-              </label>
-            </div>
-            <div className="mb-3 d-grid">
-              <button className="btn btn-success">Ingresar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div className="card-footer bg-transparent border-success row text-center">
-        <div className="col">
-          <span>
-            ¿Te olvidaste la contraseña?
-            <a href="src/pages/ErrorScreen.jsx" target="black">
-              {" "}
-              Recuperar contraseña
-            </a>
-          </span>
-          <br />
-          <span>
-            No tienes cuenta aun?{" "}
-            <a href="src/pages/ErrorScreen.jsx" target="black">
-              !Registrate!
-            </a>
-          </span>
+              <div className="mt-3">
+                <label className="fw-bold">Contraseña</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                />
+              </div>
+              <div className="mt-3 d-grid">
+                <button className="btn btn-dark" disabled={loading && true}>
+                  Iniciar sesión
+                </button>
+              </div>
+            </form>
+            {result?.msg && (
+              <div className="mt-2">
+                <LoginMessageApp message={result.msg} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
