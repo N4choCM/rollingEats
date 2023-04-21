@@ -1,10 +1,10 @@
 const url = "http://localhost:8080/api/orders";
 const token = JSON.parse(localStorage.getItem("token"));
-const limit = 10;
+const limit = 15;
 
 export const getOrders = async (limit = 0, page = 0) => {
   try {
-    const resp = await fetch(url + "?limite=" + limit + "&desde=" + page);
+    const resp = await fetch(url + "?to=" + limit + "&from=" + page);
     const data = await resp.json();
 
     return data;
@@ -31,11 +31,11 @@ export const getOrderById = async (id) => {
   }
 };
 
-export const createOrder = async (data) => {
+export const createOrder = async (orderData) => {
   try {
     const resp = await fetch(url, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(orderData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         "x-token": token,
@@ -51,11 +51,11 @@ export const createOrder = async (data) => {
   }
 };
 
-export const editOrderById = async (id, data) => {
+export const editOrderById = async (id, orderData) => {
   try {
     const resp = await fetch(url + "/" + id, {
       method: "PUT",
-      body: JSON.stringify(data),
+      body: JSON.stringify(orderData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         "x-token": token,
