@@ -27,12 +27,12 @@ const LoginScreen = ({ loginUser, saveUser }) => {
     if (resp?.token) {
       localStorage.setItem("token", JSON.stringify(resp.token));
       loginUser();
-      const { name, email, role, uid } = resp.user;
+      const { name, email, role, id } = resp.user;
       saveUser({
         name,
         email,
         role,
-        uid,
+        id,
       });
       navigate("/");
     }
@@ -41,21 +41,18 @@ const LoginScreen = ({ loginUser, saveUser }) => {
   };
 
   return (
-    <div className="bg-dark">
-      <div className="container container-login">
-        <div className="row px-2">
+    <div className="bg-dark bg-gradient rounded w-75 mx-auto py-2">
+      <div className="container">
+        <div className="row ">
           <div className="col-12 col-md-4 offset-md-4 card-login">
             <div className="d-flex justify-content-center align-items-center">
               <img src={logo} alt="logo" />
             </div>
-            <h3 className="text-center mt-2">
-              <span>
-                <i className="fa fa-user-circle" aria-hidden="true"></i>{" "}
-              </span>
+            <h3 className="text-center text-white mt-2">
               ¡Bienvenido a Rolling Eats!
             </h3>
             <form onSubmit={handleLogin}>
-              <div className="mt-3">
+              <div className="mt-3 text-white">
                 <label className="fw-bold">Email</label>
                 <input
                   type="email"
@@ -64,7 +61,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                   onChange={(e) => setEmailInput(e.target.value)}
                 />
               </div>
-              <div className="mt-3">
+              <div className="mt-3 text-white">
                 <label className="fw-bold">Contraseña</label>
                 <input
                   type="password"
@@ -73,8 +70,8 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                   onChange={(e) => setPasswordInput(e.target.value)}
                 />
               </div>
-              <div className="mt-3 d-grid">
-                <button className="btn btn-dark" disabled={loading && true}>
+              <div className="mt-3 d-grid text-white pb-4">
+                <button className="btn btn-outline-warning" disabled={loading && true}>
                   Iniciar sesión
                 </button>
               </div>
