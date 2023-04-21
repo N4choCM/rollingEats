@@ -1,10 +1,10 @@
 const url = "http://localhost:8080/api/menus";
 const token = JSON.parse(localStorage.getItem("token"));
-const limit = 1;
+const limit = 15;
 
 export const getMenus = async (from = 0) => {
   try {
-    const resp = await fetch(url + "?limite=" + limit + "&desde=" + from, {
+    const resp = await fetch(url + "?to=" + limit + "&from=" + from, {
       method: "GET",
 
       headers: {
@@ -37,11 +37,11 @@ export const getMenuById = async (id) => {
   }
 };
 
-export const createMenu = async (data) => {
+export const createMenu = async (menuData) => {
   try {
     const resp = await fetch(url, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(menuData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         "x-token": token,
@@ -57,11 +57,11 @@ export const createMenu = async (data) => {
   }
 };
 
-export const editMenuById = async (id, data) => {
+export const editMenuById = async (id, menuData) => {
   try {
     const resp = await fetch(url + "/" + id, {
       method: "PUT",
-      body: JSON.stringify(data),
+      body: JSON.stringify(menuData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         "x-token": token,

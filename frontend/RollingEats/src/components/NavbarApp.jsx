@@ -14,7 +14,7 @@ const NavbarApp = ({ logoutUser }) => {
           />
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -22,7 +22,7 @@ const NavbarApp = ({ logoutUser }) => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <nav className="nav-menu collapse navbar-collapse d-none d-lg-block">
           <ul className="d-flex">
@@ -45,7 +45,7 @@ const NavbarApp = ({ logoutUser }) => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="fa fa-user" aria-hidden="true"></i>Admin
+            <i className="fa fa-user" aria-hidden="true"></i>Admin
             <ul className="dropdown-menu">
               <li>
                 <NavLink className="dropdown-item">

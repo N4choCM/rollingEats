@@ -28,12 +28,12 @@ const HomeScreen = () => {
 		setTotalMenus(total);
 		if (category) {
 			const filteredMenus = menus.filter((item) => {
-				return item.category.name == category; //! item.category?
+				return item.category == category; //! filtrar con un set?
 			});
 			console.log(filteredMenus);
-			setCursos(filteredMenus);
+			setMenus(filteredMenus);
 		} else {
-			setCursos(menus);
+			setMenus(menus);
 		}
 	};
 
