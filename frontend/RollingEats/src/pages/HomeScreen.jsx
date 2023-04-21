@@ -38,6 +38,33 @@ const HomeScreen = () => {
 	};
 
 	return (
+    <>
+    <section id="main" class="ancla">
+      <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="off">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Burrito.JPG/375px-Burrito.JPG" class="d-block w-100" alt="Burrito" />
+          </div>
+          <div class="carousel-item">
+            <img src="https://editorialtelevisa.brightspotcdn.com/dims4/default/ef598b8/2147483647/strip/true/crop/995x560+3+0/resize/2000x1126!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-editorial-televisa.s3.amazonaws.com%2Fbrightspot%2Fwp-content%2Fuploads%2F2019%2F03%2Fpizza-gourmet-01.jpg" class="d-block w-100" alt="Pizza" />
+          </div>
+          <div class="carousel-item">
+            <img src="https://enlacocina.b-cdn.net/wp-content/uploads/2019/01/hamburguesas-gourmet.jpg.webp" class="d-block w-100" alt="Hamburguesa" />
+          </div>
+        </div>
+        <div class="overlay">
+          <div class="container h-100">
+            <div class="row h-100 align-items-center">
+              <div class="col-12 col-md-8 col-lg-6 text-md-start text-center">
+                <h1 class="d-none d-md-block">3x XTERRA & 3x ITU </h1>
+                <h1 class="d-none d-md-block">World Champion</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 		<div className="bg-home min-vh-100">
 			<div className="container">
 				<div className="row pt-5">
@@ -102,6 +129,7 @@ const HomeScreen = () => {
         </div> */}
 			</div>
 		</div>
+    </>
 	);
 };
 
