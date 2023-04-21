@@ -28,7 +28,7 @@ const getMenuById = async (req = request, res = response) => {
 
 // Creates a Menu
 const createMenu = async (req, res = response) => {
-	const { description, category, price, status } = req.body;
+	const { description, category, price, img, status } = req.body;
 	const name = req.body.name.toUpperCase();
 
 	const menuDB = await Menu.findOne({ name });
@@ -46,6 +46,7 @@ const createMenu = async (req, res = response) => {
 		description,
 		category,
 		price,
+		img,
 		status,
 	};
 
@@ -60,12 +61,13 @@ const createMenu = async (req, res = response) => {
 // Updates a Menu
 const editMenu = async (req, res) => {
 	const { id } = req.params;
-	const { description, category, price, status } = req.body;
+	const { description, category, price, img, status } = req.body;
 
 	let data = {
 		description,
 		category,
 		price,
+		img,
 		status,
 	};
 
