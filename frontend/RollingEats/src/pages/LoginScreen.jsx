@@ -41,9 +41,10 @@ const LoginScreen = ({ loginUser, saveUser }) => {
   };
 
   return (
+    <div className="body-bg">
     <div className="bg-dark bg-gradient rounded w-75 mx-auto py-2">
       <div className="container">
-        <div className="row ">
+        <div className="row">
           <div className="col-12 col-md-4 offset-md-4 card-login">
             <div className="d-flex justify-content-center align-items-center">
               <img src={logo} alt="logo" />
@@ -84,6 +85,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
