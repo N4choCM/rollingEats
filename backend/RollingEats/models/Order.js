@@ -1,18 +1,20 @@
 const { Schema, model } = require("mongoose");
+const { format } = require('date-fns');
 
 const OrderSchema = Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "Users",
+    ref: "User",
     required: true,
   },
   date: {
-    type: Date,
-    default: 0,
+    type: String,
+    default: () => format(new Date(), 'dd/MM/yyyy'),
+    required: true
   },
   menu: {
     type: Schema.Types.ObjectId,
-    ref: "Menus",
+    ref: "Menu",
     required: true,
   },
   //! This parameter is used to change the orders from 'pending' to 'delivered'

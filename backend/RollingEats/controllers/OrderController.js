@@ -1,6 +1,8 @@
 const { response, request } = require("express");
 const Order = require("../models/Order");
 
+//! Remove PutOrder. It doesn't make sense!
+
 // Finds all the orders paginated.
 const getOrders = async (req = request, res = response) => {
 	const { from = 0, to = 5 } = req.query;
@@ -28,21 +30,21 @@ const getOrderById = async (req = request, res = response) => {
 
 // Creates an Order.
 const createOrder = async (req = request, res = response) => {
-	const { date, delivered, status } = req.body;
+	const { date, delivered, menu,  status } = req.body;
 
-	const orderDB = await Order.findOne({ date });
+	// const { menuId } = req.params;
+	const orderDB = await Order.findOne({ menu });
 
 	// Validates if the menu exists in the DB.
 	if (orderDB) {
 		return res.status(400).json({
-			message:  "Ya existe la petición.",
+			message:  "Ya existe el pedido.",
 		});
 	}
-
 	// Generation of the data to be stored in the DB.
 	const data = {
-		menu: req.menus._id,
-		user,
+		menu,
+		user: req.user._id,
 		date,
 		delivered,
 		status,
@@ -90,7 +92,7 @@ const deleteOrderById = async (req, res) => {
 	);
 
 	res.json({
-		msg: `El pedido del menú ${deletedOrder.menu.name} ha sido inactivado correctamente.`,
+		msg: `El pedido con ID ${deletedOrder.id} ha sido inactivado correctamente.`,
 	});
 };
 
