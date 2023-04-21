@@ -18,13 +18,16 @@ const MenuSchema = Schema({
         type:Number,
         required:[true, "El precio es obligatorio."]
     },
+    img: {
+        type: String,
+        required:[true, "La imagen es obligatoria."]
+      },
     status:{
         type:Boolean,
         default:true
     }
 })
 
-// Quitar datos en la respuesta JSON
 MenuSchema.methods.toJSON=function(){
     const {__v, _id, ...menu} = this.toObject()
     menu.id = _id

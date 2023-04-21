@@ -14,11 +14,12 @@ const { isUserAdmin } = require("../middlewares/RoleValidator");
 
 const router = Router();
 
-router.get("/", getMenus);
+router.get("/", [validateJWT], getMenus);
 
 router.get(
 	"/:id",
 	[
+		validateJWT,
 		check("id", "El ID no es válido").isMongoId(),
 		check("id").custom(isMenuByIdUnique),
 		validateFields,
@@ -34,6 +35,7 @@ router.post(
 		check("name", "El nombre es obligatorio.").notEmpty(),
 		check("description", "La descripción es obligatoria.").notEmpty(),
 		check("category", "La categoría es obligatoria.").notEmpty(),
+		check("img", "La imagen es obligatoria.").notEmpty(),
 		check("price", "El precio es obligatorio.").notEmpty(),
 		check("price", "El precio debe ser numérico.").isNumeric(),
 		validateFields,
