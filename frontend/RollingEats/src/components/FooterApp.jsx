@@ -20,10 +20,10 @@ const FooterApp = () => {
 
                 </div>
                 <ul className='social_ico'>
-                        <li> <a href="#"> <i class="fa fa-youtube-play" aria-hidden="true"></i>  </a></li>
-                        <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i> </a> </li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a> </li>
-                        <li><a href="#"> <i class="fa fa-facebook-square" aria-hidden="true"></i> </a> </li>
+                        <li> <a href="#"> <i className="fa fa-youtube-play" aria-hidden="true"></i>  </a></li>
+                        <li><a href="#"><i className="fa fa-twitter-square" aria-hidden="true"></i> </a> </li>
+                        <li><a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a> </li>
+                        <li><a href="#"> <i className="fa fa-facebook-square" aria-hidden="true"></i> </a> </li>
                 </ul>
                 <div>
                 </div>
