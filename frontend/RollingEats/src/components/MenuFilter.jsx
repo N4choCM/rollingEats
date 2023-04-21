@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getMenus } from "../helpers/menuApi";
+import { getMenus } from "../helpers/MenuApi";
 
 const MenuFilter = ({ checkedCategory }) => {
   const [categories, setCategories] = useState(null);
   //! const token = JSON.parse(localStorage.getItem("token"));
-
-  //! THE FASTEST THING IS DOING A CATEGORIES MODEL AS PABLO DID
 
   useEffect(() => {
     findCategories();
@@ -18,7 +16,7 @@ const MenuFilter = ({ checkedCategory }) => {
         allowedCategories[item.category] = true
     })
     const uniqueCategories = Object.keys(allowedCategories)
-    setCategorias(uniqueCategories);
+    setCategories(uniqueCategories);
   };
 
   return (
@@ -51,9 +49,9 @@ const MenuFilter = ({ checkedCategory }) => {
                 <li className="nav-item me-2" key={"category"}>
                   <button
                     className="btn btn-dark"
-                    onClick={() => categoriaSeleccionada(categoria.nombre)}
+                    onClick={() => checkedCategory(category)}
                   >
-                    {categoria.nombre}
+                    {category}
                   </button>
                 </li>
               ))}
