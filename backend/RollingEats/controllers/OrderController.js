@@ -19,6 +19,15 @@ const getOrders = async (req = request, res = response) => {
 	});
 };
 
+// Finds all the orders paginated.
+const getOrdersByUser = async (req = request, res = response) => {
+	const { user } = req.params;
+	const orders = await Order.find({user: user})
+	res.json({
+		orders,
+	});
+};
+
 // Gets an order by its ID.
 const getOrderById = async (req = request, res = response) => {
 	const { id } = req.params;
@@ -98,6 +107,7 @@ const deleteOrderById = async (req, res) => {
 
 module.exports = {
 	getOrders,
+	getOrdersByUser,
 	getOrderById,
 	createOrder,
 	editOrderById,
