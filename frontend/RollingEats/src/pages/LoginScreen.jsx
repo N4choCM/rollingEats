@@ -4,6 +4,8 @@ import { login } from "../helpers/LoginApi";
 import logo from "../assets/logo.png";
 import "../css/login.css";
 import LoginMessageApp from "../components/LoginMessageApp";
+import { Link } from "react-router-dom";
+
 
 const LoginScreen = ({ loginUser, saveUser }) => {
   const navigate = useNavigate(); 
@@ -53,7 +55,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
             <div className="d-flex justify-content-center align-items-center">
               <img src={logo} alt="logo" className="logo" />
             </div>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="py-4">
               <div className="mt-3 text-white">
                 <label className="fw-bold">Email</label>
                 <input
@@ -78,9 +80,10 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                 </button>
               </div>
               <hr className="text-white" />
-              <div>
-                <p className="text-white">¿Todavía no eres miembro de Rolling Eats? ¡Regístrate aquí! 😁</p>
-              </div>
+              <Link to={`/register}`} className="text-white">
+              ¿Todavía no eres miembro de Rolling Eats? ¡Regístrate aquí! 😁
+                        </Link>
+
             </form>
             {result?.msg && (
               <div className="mt-2">
