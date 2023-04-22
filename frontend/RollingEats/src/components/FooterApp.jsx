@@ -5,7 +5,7 @@ import logo from "../assets/logo.png";
 const FooterApp = () => {
 	return (
     <footer>
-      <div className="bg-dark">
+      <div className="footer-custom">
       <div className="container">
         <div className="row d-flex flex-column flex-md-row gap-5 py-5">
           <div className="col d-flex justify-content-center">
