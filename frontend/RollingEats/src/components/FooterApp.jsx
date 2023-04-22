@@ -25,7 +25,7 @@ const FooterApp = () => {
             </p>
             <p>
               <span>
-                <i class="fa fa-envelope-o me-1" aria-hidden="true"></i> info@rolling-eats.com
+                <i className="fa fa-envelope-o me-1" aria-hidden="true"></i> info@rolling-eats.com
               </span>
             </p>
           </div>
