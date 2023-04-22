@@ -39,18 +39,18 @@ const HomeScreen = () => {
 
 	return (
 		<>
-<section id="main" class="ancla">
+<section id="main" className="ancla">
 			<div
 				id="carouselExampleCaptions"
-				class="carousel slide"
+				className="carousel slide"
 				data-bs-ride="false"
 			>
-				<div class="carousel-indicators">
+				<div className="carousel-indicators">
 					<button
 						type="button"
 						data-bs-target="#carouselExampleCaptions"
 						data-bs-slide-to="0"
-						class="active"
+						className="active"
 						aria-current="true"
 						aria-label="Slide 1"
 					></button>
@@ -185,7 +185,7 @@ const HomeScreen = () => {
 							</div>
 						</div>
 					) : (
-						<div className="row row-cols-1 row-cols-md-3 g-4 pb-3 ">
+						<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-3 ">
 							{menus.map((menu) => (
 								<MenuCard key={menu._id} menu={menu} />
 							))}
