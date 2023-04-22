@@ -7,33 +7,20 @@ import "../css/home.css";
 import MenuPagination from "../components/MenuPagination";
 
 const HomeScreen = () => {
-	const [category, setCategory] = useState("");
 	const [menus, setMenus] = useState(null);
 
 	const [page, setPage] = useState(0);
 	const [totalMenus, setTotalMenus] = useState(0);
 
-	const checkedCategory = (category) => {
-		setCategory(category);
-	};
-
 	useEffect(() => {
 		setMenus(null);
 		findMenus();
-	}, [category]);
+	}, []);
 
 	const findMenus = async () => {
 		const { menus, total } = await getMenus(page, page+12);
 		setTotalMenus(total);
-		if (category) {
-			const filteredMenus = menus.filter((item) => {
-				return item.category == category;
-			});
-			console.log(filteredMenus);
-			setMenus(filteredMenus);
-		} else {
-			setMenus(menus);
-		}
+		setMenus(menus);
 	};
 
 	return (
@@ -154,11 +141,6 @@ const HomeScreen = () => {
 							</p>
 						</div>
 					</div>
-					{/* <div className="row">
-						<div className="col-12">
-							<MenuFilter checkedCategory={checkedCategory} />
-						</div>
-					</div> */}
 					<div className="row">
 						<div className="col col-md-6 col-lg-4">
 						<div className="input-group mb-3 ">
@@ -171,7 +153,6 @@ const HomeScreen = () => {
 						<div className="row">
 							<div className="col">
 								<h3 className="text-white">Cargando...</h3> //! Spinner?
-								Spinner?
 							</div>
 						</div>
 					) : (
