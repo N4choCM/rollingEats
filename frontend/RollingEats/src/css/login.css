@@ -9,3 +9,7 @@
   width: 100vw;
   background-image: url(src/assets/fondoLogin.jpg);
 }
+
+.logo{
+  width: 250px;
+}

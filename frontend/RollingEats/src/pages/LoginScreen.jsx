@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../helpers/LoginApi";
 import logo from "../assets/logo.png";
 import "../css/login.css";
+import LoginMessageApp from "../components/LoginMessageApp";
+import { Link } from "react-router-dom";
+
 
 const LoginScreen = ({ loginUser, saveUser }) => {
   const navigate = useNavigate(); 
@@ -41,18 +44,18 @@ const LoginScreen = ({ loginUser, saveUser }) => {
   };
 
   return (
-    <div className="body-bg">
-    <div className="bg-dark bg-gradient rounded w-75 mx-auto py-2">
+    <div className="body-bg d-flex align-self-center align-items-center">
+    <div className="bg-dark bg-gradient rounded w-50 mx-auto py-2">
       <div className="container">
         <div className="row">
-          <div className="col-12 col-md-4 offset-md-4 card-login">
-            <div className="d-flex justify-content-center align-items-center">
-              <img src={logo} alt="logo" />
-            </div>
+          <div className="col-12 col-md-6 offset-md-3 card-login">
             <h3 className="text-center text-white mt-2">
-              ¡Bienvenido a Rolling Eats!
+              Bienvenido a
             </h3>
-            <form onSubmit={handleLogin}>
+            <div className="d-flex justify-content-center align-items-center">
+              <img src={logo} alt="logo" className="logo" />
+            </div>
+            <form onSubmit={handleLogin} className="py-4">
               <div className="mt-3 text-white">
                 <label className="fw-bold">Email</label>
                 <input
@@ -60,6 +63,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                   className="form-control"
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
+                  maxLength={40}
                 />
               </div>
               <div className="mt-3 text-white">
@@ -69,13 +73,19 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                   className="form-control"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
+                  maxLength={40}
                 />
               </div>
-              <div className="mt-3 d-grid text-white pb-4">
+              <div className="mt-3 d-grid text-white pb-2">
                 <button className="btn btn-outline-warning" disabled={loading && true}>
                   Iniciar sesión
                 </button>
               </div>
+              <hr className="text-white" />
+              <Link to={`/register}`} className="text-white">
+              ¿Todavía no eres miembro de Rolling Eats? ¡Regístrate aquí! 😁
+                        </Link>
+
             </form>
             {result?.msg && (
               <div className="mt-2">

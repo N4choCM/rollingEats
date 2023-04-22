@@ -44,7 +44,7 @@ router.post(
     ).isLength({ min: 6 }),
     check("email", "No es un correo válido.").isEmail(),
     check("email").custom(isEmailUnique),
-    check("role").custom(isRoleValid),
+    // check("role").custom(isRoleValid),
     validateFields,
   ],
   register

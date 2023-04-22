@@ -1,8 +1,8 @@
 const url = "http://localhost:8080/api/menus";
 const token = JSON.parse(localStorage.getItem("token"));
-const limit = 15;
+// const limit = 12;
 
-export const getMenus = async (from = 0) => {
+export const getMenus = async (from = 0, limit = 12) => {
   try {
     const resp = await fetch(url + "?to=" + limit + "&from=" + from, {
       method: "GET",
