@@ -5,7 +5,7 @@ import logo from "../assets/logo.png";
 
 const NavbarApp = ({ logoutUser, user }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div className="container">
         <Link className="navbar-brand my-auto" to="/">
           <img className="img-logo " src={logo} alt="logo" />
@@ -25,20 +25,20 @@ const NavbarApp = ({ logoutUser, user }) => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">
-                <i className="fa fa-home" aria-hidden="true"></i>
+                <i className="fa fa-home me-1" aria-hidden="true"></i>
                 Inicio
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/orders">
-                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-shopping-cart me-1" aria-hidden="true"></i>
                 Pedidos
               </NavLink>
             </li>
             {user.role === "ADMIN_ROLE" && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/admin">
-                  <i className="fa fa-cog" aria-hidden="true"></i>
+                  <i className="fa fa-cog me-1" aria-hidden="true"></i>
                   Admin
                 </NavLink>
               </li>

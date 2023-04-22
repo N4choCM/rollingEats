@@ -6,7 +6,7 @@
 
 /* carousel */
 #main .carousel-item img {
-    max-height: 75vh;
+    max-height: 100vh;
     filter: grayscale(70%);
     object-fit: cover;
 }

@@ -7,7 +7,7 @@ import logo from "../assets/logo.png"
 const FooterApp = () => {
   return (
 
-        <div className='footer'>
+        <div className='footer mt-5'>
                 <div className='wave'>
                     <div className='wave' id='wave1'></div>
                     <div className='wave' id='wave2'></div>
