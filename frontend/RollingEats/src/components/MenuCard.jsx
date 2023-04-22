@@ -20,7 +20,7 @@ const MenuCard = ({ menu }) => {
             <p className="card-text text-end fw-bold">{menu.price} €</p>
           </div>
 
-          <Link to={`/menus/${menu._id}`} className="btn btn-dark">
+          <Link to={`/menus/${menu._id}`} className="btn btn-card">
             Añadir al carrito
           </Link>
         </div>
