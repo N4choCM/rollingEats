@@ -46,12 +46,12 @@ const LoginScreen = ({ loginUser, saveUser }) => {
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-4 offset-md-4 card-login">
-            <div className="d-flex justify-content-center align-items-center">
-              <img src={logo} alt="logo" />
-            </div>
             <h3 className="text-center text-white mt-2">
-              ¡Bienvenido a Rolling Eats!
+              Bienvenido a
             </h3>
+            <div className="d-flex justify-content-center align-items-center">
+              <img src={logo} alt="logo" className="logo" />
+            </div>
             <form onSubmit={handleLogin}>
               <div className="mt-3 text-white">
                 <label className="fw-bold">Email</label>

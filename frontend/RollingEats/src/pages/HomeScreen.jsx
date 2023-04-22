@@ -74,7 +74,7 @@ const HomeScreen = () => {
 							className="d-block w-100"
 							alt="Hamburguesa"
 						/>
-						<div className="carousel-caption d-none d-md-block">
+						<div className="carousel-caption d-none d-md-block text-bg-custom">
 							<h5>Hamburguesas de otra liga</h5>
 							<p>
 								Prueba nuestra selección de hamburguesas
@@ -88,7 +88,7 @@ const HomeScreen = () => {
 							className="d-block w-100"
 							alt="Pizza"
 						/>
-						<div className="carousel-caption d-none d-md-block">
+						<div className="carousel-caption d-none d-md-block text-bg-custom">
 							<h5>¿A quién no le gusta la comida italiana?</h5>
 							<p>
 								Nuestras pizzas están hechas en estilo
@@ -102,7 +102,7 @@ const HomeScreen = () => {
 							className="d-block w-100"
 							alt="Burrito"
 						/>
-						<div className="carousel-caption d-none d-md-block">
+						<div className="carousel-caption d-none d-md-block text-bg-custom">
 							<h5>¡Ándale!</h5>
 							<p>
 								La comida mexicana es una explosión de sabores,
