@@ -7,6 +7,7 @@ const { isOrderByIdUnique } = require("../helpers/DBValidator");
 
 const {
 	getOrders,
+	getOrdersByUser,
 	getOrderById,
 	createOrder,
 	editOrderById,
@@ -15,7 +16,17 @@ const {
 
 const router = Router();
 
-router.get("/", [validateJWT], getOrders);
+router.get("/", [validateJWT, isUserAdmin], getOrders);
+
+router.get(
+	"/:user",
+	[
+		validateJWT,
+		check("user", "El ID no es válido.").isMongoId(),
+		validateFields,
+	],
+	getOrdersByUser
+);
 
 router.get(
 	"/:id",
