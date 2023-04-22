@@ -42,11 +42,11 @@ const LoginScreen = ({ loginUser, saveUser }) => {
   };
 
   return (
-    <div className="body-bg">
-    <div className="bg-dark bg-gradient rounded w-75 mx-auto py-2">
+    <div className="body-bg d-flex align-self-center align-items-center">
+    <div className="bg-dark bg-gradient rounded w-50 mx-auto py-2">
       <div className="container">
         <div className="row">
-          <div className="col-12 col-md-4 offset-md-4 card-login">
+          <div className="col-12 col-md-6 offset-md-3 card-login">
             <h3 className="text-center text-white mt-2">
               Bienvenido a
             </h3>
@@ -72,10 +72,14 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                   onChange={(e) => setPasswordInput(e.target.value)}
                 />
               </div>
-              <div className="mt-3 d-grid text-white pb-4">
+              <div className="mt-3 d-grid text-white pb-2">
                 <button className="btn btn-outline-warning" disabled={loading && true}>
                   Iniciar sesión
                 </button>
+              </div>
+              <hr className="text-white" />
+              <div>
+                <p className="text-white">¿Todavía no eres miembro de Rolling Eats? ¡Regístrate aquí! 😁</p>
               </div>
             </form>
             {result?.msg && (
