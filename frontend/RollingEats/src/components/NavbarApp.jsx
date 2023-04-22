@@ -21,7 +21,7 @@ const NavbarApp = ({ logoutUser, user }) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse text-center" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">
@@ -45,7 +45,7 @@ const NavbarApp = ({ logoutUser, user }) => {
             )}
           </ul>
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item text-center">
+            <li className="nav-item">
               <button className="btn nav-link btn-outline-danger text-danger red-white-text" onClick={logoutUser}>
                 Cerrar sesión
               </button>
