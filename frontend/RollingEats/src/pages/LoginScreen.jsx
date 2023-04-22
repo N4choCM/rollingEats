@@ -63,6 +63,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                   className="form-control"
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
+                  maxLength={40}
                 />
               </div>
               <div className="mt-3 text-white">
@@ -72,6 +73,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                   className="form-control"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
+                  maxLength={40}
                 />
               </div>
               <div className="mt-3 d-grid text-white pb-2">
