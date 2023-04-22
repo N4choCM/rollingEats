@@ -191,17 +191,17 @@ const HomeScreen = () => {
 							))}
 						</div>
 					)}
-					{/* <div className="row">
+					<div className="row">
           <div className="col">
-            {totalCursos > 0 && (
-              <PaginationCursos
-                total={totalCursos}
-                pagina={pagina}
-                setPagina={setPagina}
+            {totalMenus > 0 && (
+              <MenuPagination
+                total={totalMenus}
+                page={page}
+                setPage={setPage}
               />
             )}
           </div>
-        </div> */}
+        </div>
 				</div>
 			</div>
 		</>
