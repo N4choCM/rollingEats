@@ -12,8 +12,8 @@ const MainRoutes = ({ logoutUser, user }) => {
     <>
       <NavbarApp logoutUser={logoutUser} user={user} />
       <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/order" element={<OrderScreen />} />
+        <Route path="/" element={<HomeScreen user={user} />} />
+        <Route path="/orders" element={<OrderScreen user={user} />} />
         <Route
           path="/admin"
           element={

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import MenuCard from "../components/MenuCard";
 
 import { getMenus } from "../helpers/MenuApi";
+import { searchData } from "../helpers/SearchApi";
 
 import "../css/home.css";
 import MenuPagination from "../components/MenuPagination";
 
-const HomeScreen = () => {
+const HomeScreen = (user) => {
 	const [menus, setMenus] = useState(null);
+	const [searchTerm, setSearchTerm] = useState('');
 
 	const [page, setPage] = useState(0);
 	const [totalMenus, setTotalMenus] = useState(0);
@@ -22,6 +24,12 @@ const HomeScreen = () => {
 		setTotalMenus(total);
 		setMenus(menus);
 	};
+
+	const handleInputChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    searchData('menus', searchTerm);
+  };
 
 	return (
 		<>
@@ -144,7 +152,7 @@ const HomeScreen = () => {
 					<div className="row">
 						<div className="col col-md-6 col-lg-4">
 						<div className="input-group mb-3 ">
-							<input type="text" className="form-control" placeholder="Busca tu menú favorito" aria-label="Recipient's username" aria-describedby="button-addon2" maxLength={50}/>
+							<input type="text" value={searchTerm} onChange={handleInputChange} className="form-control" placeholder="Busca tu menú favorito" aria-label="Recipient's username" aria-describedby="button-addon2" maxLength={50}/>
 								<button className="btn btn-custom" type="button" id="button-addon2"><i className="fa fa-search text-white" aria-hidden="true"></i></button>
 						</div>
 						</div>
@@ -158,7 +166,7 @@ const HomeScreen = () => {
 					) : (
 						<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-3 ">
 							{menus.map((menu) => (
-								<MenuCard key={menu._id} menu={menu} />
+								<MenuCard menu={menu} user={user} />
 							))}
 						</div>
 					)}

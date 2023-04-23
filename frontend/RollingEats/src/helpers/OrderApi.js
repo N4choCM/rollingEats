@@ -4,7 +4,13 @@ const limit = 15;
 
 export const getOrders = async (limit = 0, page = 0) => {
   try {
-    const resp = await fetch(url + "?to=" + limit + "&from=" + page);
+    const resp = await fetch(url + "?to=" + limit + "&from=" + page, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token,
+      },
+    });
     const data = await resp.json();
 
     return data;
@@ -13,6 +19,23 @@ export const getOrders = async (limit = 0, page = 0) => {
     throw new Error("No se pudo establecer la conexión con el backend.");
   }
 };
+
+export const getordersByUser = async(user) => {
+  try {
+    const resp = await fetch(urk + "/" + user, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token,
+      },
+    })
+    const data = resp.json;
+    return data;
+  } catch (e) {
+    console.log(e)
+    throw new Error("No se pudo establecer la conexión con el backend.");    
+  }
+}
 
 export const getOrderById = async (id) => {
   try {

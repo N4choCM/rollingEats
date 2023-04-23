@@ -26,7 +26,7 @@ const RegisterScreen = () => {
     }
 
  const handleSubmit=(e)=>{
-    e.preventDefault();
+    e.preventDefault;
     if(!FormValues.email){
         setMessage(true)
     }
