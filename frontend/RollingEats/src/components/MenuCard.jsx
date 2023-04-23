@@ -5,13 +5,18 @@ import {createOrder} from "../helpers/OrderApi";
 
 
 const MenuCard = ({ menu }) => {  
-  const handleCreateOrder = async (e) => {
-    e.preventDeafult;
-    const order = new Order({
-      menu: menu._id
-    })
-    // const resp = await createOrder(data);
-    order.save()
+
+  const [name, setName] = useState(null);
+
+  const handleCreateOrder = async (e, menuName) => {
+    console.log(menuName)
+    e.preventDefault();
+    setName(menuName);
+
+    const data = ({
+      menu: menuName // Asignar directamente el valor de menuName al objeto data
+    });
+    const resp = await createOrder(data);
   };
   return (
     <div className="col ">
@@ -30,7 +35,7 @@ const MenuCard = ({ menu }) => {
             <p className="card-text text-end fw-bold">{menu.price} €</p>
           </div>
 
-          <button className="btn btn-card" onClick={handleCreateOrder}>
+          <button className="btn btn-card" onClick={(e) => handleCreateOrder(e, menu.name)}>
             Añadir al carrito
           </button>
         </div>

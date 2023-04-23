@@ -13,9 +13,10 @@ const OrderSchema = Schema({
     required: true
   },
   menu: {
-    type: Schema.Types.ObjectId,
+    type: String,
     ref: "Menu",
     required: true,
+    unique: true
   },
   //! This parameter is used to change the orders from 'pending' to 'delivered'
   //! Thus, true = delivered and false = pending.
