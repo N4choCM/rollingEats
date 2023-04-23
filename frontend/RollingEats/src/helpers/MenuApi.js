@@ -9,7 +9,7 @@ export const getMenus = async (from = 0, limit = 12) => {
 
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
     const data = await resp.json();
@@ -26,7 +26,7 @@ export const getMenuById = async (id) => {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
     const data = await resp.json();
@@ -44,7 +44,7 @@ export const createMenu = async (menuData) => {
       body: JSON.stringify(menuData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -64,7 +64,7 @@ export const editMenuById = async (id, menuData) => {
       body: JSON.stringify(menuData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -83,7 +83,7 @@ export const deleteMenuById = async (id) => {
       method: "DELETE",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -92,6 +92,6 @@ export const deleteMenuById = async (id) => {
     return data;
   } catch (e) {
     console.log(e);
-    return { message: "No se consiguió establecer la conexión con el backendd" };
+    return { message: "No se consiguió establecer la conexión con el backend." };
   }
 };

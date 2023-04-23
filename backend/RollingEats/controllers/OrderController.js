@@ -2,7 +2,6 @@ const { response, request } = require("express");
 const Order = require("../models/Order");
 
 //! Remove PutOrder. It doesn't make sense!
-
 // Finds all the orders paginated.
 const getOrders = async (req = request, res = response) => {
 	const { from = 0, to = 5 } = req.query;
@@ -39,21 +38,12 @@ const getOrderById = async (req = request, res = response) => {
 
 // Creates an Order.
 const createOrder = async (req = request, res = response) => {
-	const { date, delivered, menu,  status } = req.body;
+	const { date, delivered, menu, user, status } = req.body;
 
-	// const { menuId } = req.params;
-	const orderDB = await Order.findOne({ menu });
-
-	// Validates if the menu exists in the DB.
-	if (orderDB) {
-		return res.status(400).json({
-			message:  "Ya existe el pedido.",
-		});
-	}
 	// Generation of the data to be stored in the DB.
 	const data = {
 		menu,
-		user: req.user._id,
+		user,
 		date,
 		delivered,
 		status,

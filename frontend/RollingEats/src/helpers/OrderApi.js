@@ -4,7 +4,13 @@ const limit = 15;
 
 export const getOrders = async (limit = 0, page = 0) => {
   try {
-    const resp = await fetch(url + "?to=" + limit + "&from=" + page);
+    const resp = await fetch(url + "?to=" + limit + "&from=" + page, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token.toString(),
+      },
+    });
     const data = await resp.json();
 
     return data;
@@ -14,13 +20,30 @@ export const getOrders = async (limit = 0, page = 0) => {
   }
 };
 
+export const getordersByUser = async(user) => {
+  try {
+    const resp = await fetch(urk + "/" + user, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token.toString(),
+      },
+    })
+    const data = resp.json;
+    return data;
+  } catch (e) {
+    console.log(e)
+    throw new Error("No se pudo establecer la conexión con el backend.");    
+  }
+}
+
 export const getOrderById = async (id) => {
   try {
     const resp = await fetch(url + "/" + id, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
     const data = await resp.json();
@@ -32,13 +55,14 @@ export const getOrderById = async (id) => {
 };
 
 export const createOrder = async (orderData) => {
+  console.log(orderData)
   try {
     const resp = await fetch(url, {
       method: "POST",
       body: JSON.stringify(orderData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -58,7 +82,7 @@ export const editOrderById = async (id, orderData) => {
       body: JSON.stringify(orderData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -67,7 +91,7 @@ export const editOrderById = async (id, orderData) => {
     return data;
   } catch (e) {
     console.log(e);
-    return { msg: "No se conectó con backend" };
+    return { msg: "No se pudo establecer la conexión con el backend." };
   }
 };
 
@@ -77,7 +101,7 @@ export const deleteOrderById = async (id) => {
       method: "DELETE",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -86,6 +110,6 @@ export const deleteOrderById = async (id) => {
     return data;
   } catch (e) {
     console.log(e);
-    return { message: "No se conectó con backend" };
+    return { message: "No se pudo establecer la conexión con el backend." };
   }
 };

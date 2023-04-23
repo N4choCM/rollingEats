@@ -26,16 +26,16 @@ const LoginScreen = ({ loginUser, saveUser }) => {
     };
 
     const resp = await login(data);
-    console.log(resp);
+    console.log(resp);  
     if (resp?.token) {
       localStorage.setItem("token", JSON.stringify(resp.token));
       loginUser();
-      const { name, email, role, id } = resp.user;
+      const { name, email, role, uid } = resp.user;
       saveUser({
         name,
         email,
         role,
-        id,
+        uid,
       });
       navigate("/");
     }
@@ -83,7 +83,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
               </div>
               <hr className="text-white" />
               <Link to={`/register}`} className="text-white">
-              ¿Todavía no eres miembro de Rolling Eats? ¡Regístrate aquí! 😁
+              ¡Regístrate aquí! 😁
                         </Link>
 
             </form>

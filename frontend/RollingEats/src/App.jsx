@@ -13,6 +13,7 @@ function App() {
 
   const saveUser = (data) => {
     setUser(data);
+    console.log(user)
   };
 
   const loginUser = () => {
@@ -21,6 +22,7 @@ function App() {
 
   const logoutUser = () => {
     setLogin(false);
+    localStorage.removeItem("token")
   };
 
   return (

@@ -26,8 +26,6 @@ const searchMenus = async (term, res = response) => {
 		$or: [
 			{ name: regex },
 			{ description: regex },
-			{ category: regex },
-			{ price: regex },
 		],
 		$and: [{ status: true }],
 	});
