@@ -8,7 +8,7 @@ export const getOrders = async (limit = 0, page = 0) => {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
     const data = await resp.json();
@@ -26,7 +26,7 @@ export const getordersByUser = async(user) => {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     })
     const data = resp.json;
@@ -43,7 +43,7 @@ export const getOrderById = async (id) => {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
     const data = await resp.json();
@@ -61,7 +61,7 @@ export const createOrder = async (orderData) => {
       body: JSON.stringify(orderData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -81,7 +81,7 @@ export const editOrderById = async (id, orderData) => {
       body: JSON.stringify(orderData),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 
@@ -100,7 +100,7 @@ export const deleteOrderById = async (id) => {
       method: "DELETE",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
 

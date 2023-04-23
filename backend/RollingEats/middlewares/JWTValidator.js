@@ -14,12 +14,24 @@ const validateJWT = async (req = request, res = response, next) => {
     });
   }
 
+  // jwt.verify(token, process.env.SECRETORPRIVATEKEY, (error, decodedToken) => {
+  //   if (error) {
+  //     // Si hay un error al verificar el token, se devuelve una respuesta de error
+  //     console.log('Token inválido:', error.message);
+  //     return res.status(401).json({ error: 'Token inválido' });
+  //   } else {
+  //     // Si el token es válido, se devuelve una respuesta exitosa
+  //     console.log('Token verificado:', decodedToken);
+  //     return res.status(200).json({ mensaje: 'Token verificado' });
+  //   }
+  // });
+
   try {
-    // JWT verification and UserId extraction.
-    const { userId } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+    // JWT verification and uid extraction.
+    const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
 
     // Data of the authenticated user extraction.
-    const user = await User.findById(userId);
+    const user = await User.findById(uid);
 
     // Checks if the User exists.
     if (!user) {

@@ -21,6 +21,7 @@ function App() {
 
   const logoutUser = () => {
     setLogin(false);
+    localStorage.removeItem("token")
   };
 
   return (

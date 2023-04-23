@@ -8,7 +8,7 @@ export const getUsers = async (page = 0) => {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "x-token": token,
+        "x-token": token.toString(),
       },
     });
     const data = await resp.json();
@@ -21,7 +21,13 @@ export const getUsers = async (page = 0) => {
 
 export const getUserById = async (id) => {
   try {
-    const resp = await fetch(url + "/" + id);
+    const resp = await fetch(url + "/" + id, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token.toString(),
+      },
+    });
     const data = await resp.json();
 
     return data;

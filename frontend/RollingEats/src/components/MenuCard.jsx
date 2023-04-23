@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/cards.css";
+import {createOrder} from "../helpers/OrderApi";
 
-const MenuCard = ({ menu }) => {
+
+const MenuCard = ({ menu }) => {  
+  const handleCreateOrder = async (e) => {
+    e.preventDeafult;
+    const order = new Order({
+      menu: menu._id
+    })
+    // const resp = await createOrder(data);
+    order.save()
+  };
   return (
     <div className="col ">
       <div className="card h-100 text-dark ">
@@ -20,9 +30,9 @@ const MenuCard = ({ menu }) => {
             <p className="card-text text-end fw-bold">{menu.price} €</p>
           </div>
 
-          <Link to={`/menus/${menu._id}`} className="btn btn-card">
+          <button className="btn btn-card" onClick={handleCreateOrder}>
             Añadir al carrito
-          </Link>
+          </button>
         </div>
       </div>
     </div>
