@@ -1,41 +1,40 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "../css/cards.css";
 import {createOrder} from "../helpers/OrderApi";
 
+const MenuCard = ({ menuProp, uid }) => {  
+console.log(uid)
 
-const MenuCard = ({ menu }) => {  
-
-  const [name, setName] = useState(null);
-
-  const handleCreateOrder = async (e, menuName) => {
-    console.log(menuName)
+  const handleCreateOrder = async (e, menuName, userId) => {
     e.preventDefault();
-    setName(menuName);
+    console.log(menuName)
+    console.log(userId)
 
     const data = ({
-      menu: menuName // Asignar directamente el valor de menuName al objeto data
+      user: userId,
+      menu: menuName 
     });
     const resp = await createOrder(data);
   };
+
   return (
     <div className="col ">
       <div className="card h-100 text-dark ">
         <div>
-          <img src={menu.img} className="card-img-top" alt={menu.name} />
+          <img src={menuProp.img} className="card-img-top" alt={menuProp.name} />
         </div>
         <div className="card-body d-flex flex-column justify-content-between mt-2">
           <div>
-            <h5 className="card-title text-center">{menu.name}</h5>
+            <h5 className="card-title text-center">{menuProp.name}</h5>
           </div>
           <div>
-            <p className="card-text">{menu.description}</p>
+            <p className="card-text">{menuProp.description}</p>
           </div>
           <div className="mb-3 mt-2">
-            <p className="card-text text-end fw-bold">{menu.price} €</p>
+            <p className="card-text text-end fw-bold">{menuProp.price} €</p>
           </div>
 
-          <button className="btn btn-card" onClick={(e) => handleCreateOrder(e, menu.name)}>
+          <button className="btn btn-card" onClick={(e) => handleCreateOrder(e, menuProp.name, uid)}>
             Añadir al carrito
           </button>
         </div>

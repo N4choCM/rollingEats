@@ -30,12 +30,12 @@ const LoginScreen = ({ loginUser, saveUser }) => {
     if (resp?.token) {
       localStorage.setItem("token", JSON.stringify(resp.token));
       loginUser();
-      const { name, email, role, id } = resp.user;
+      const { name, email, role, uid } = resp.user;
       saveUser({
         name,
         email,
         role,
-        id,
+        uid,
       });
       navigate("/");
     }

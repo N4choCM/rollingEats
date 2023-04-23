@@ -7,7 +7,11 @@ import { searchData } from "../helpers/SearchApi";
 import "../css/home.css";
 import MenuPagination from "../components/MenuPagination";
 
-const HomeScreen = (user) => {
+const HomeScreen = ({user}) => {
+	console.log(user)
+	const {uid} = user
+	console.log(uid)
+
 	const [menus, setMenus] = useState(null);
 	const [searchTerm, setSearchTerm] = useState('');
 
@@ -166,7 +170,7 @@ const HomeScreen = (user) => {
 					) : (
 						<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-3 ">
 							{menus.map((menu) => (
-								<MenuCard menu={menu} user={user} />
+								<MenuCard menuProp={menu} uid={uid} />
 							))}
 						</div>
 					)}

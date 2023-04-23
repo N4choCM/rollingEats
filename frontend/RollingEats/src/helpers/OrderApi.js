@@ -91,7 +91,7 @@ export const editOrderById = async (id, orderData) => {
     return data;
   } catch (e) {
     console.log(e);
-    return { msg: "No se conectó con backend" };
+    return { msg: "No se pudo establecer la conexión con el backend." };
   }
 };
 
@@ -110,6 +110,6 @@ export const deleteOrderById = async (id) => {
     return data;
   } catch (e) {
     console.log(e);
-    return { message: "No se conectó con backend" };
+    return { message: "No se pudo establecer la conexión con el backend." };
   }
 };

@@ -35,7 +35,7 @@ const isOrderByIdUnique = async (id) => {
 
   if (!existingOrder) {
     throw new Error(
-      `El ID ${id} no se corresponde con ninguna categoría registrada.`
+      `El ID ${id} no se corresponde con ningún pedido.`
     );
   }
 };
