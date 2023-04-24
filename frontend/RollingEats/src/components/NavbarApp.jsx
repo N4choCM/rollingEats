@@ -2,8 +2,16 @@ import React from "react";
 import "../css/navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
+import {getOrdersByUser} from "../helpers/OrderApi";
 
-const NavbarApp = ({ logoutUser, user }) => {
+const NavbarApp = async ({ logoutUser, user }) => {
+
+  const [ordersTotal, setOrdersTotal] = useState(null)
+
+    const resp = await getOrdersByUser(user.uid)
+
+    setOrdersTotal(resp);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div className="container">
@@ -31,7 +39,15 @@ const NavbarApp = ({ logoutUser, user }) => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/orders">
-                <i className="fa fa-shopping-cart me-1" aria-hidden="true"></i>
+                {
+                  ordersTotal.length > 0 ? 
+                    <>
+                    <i class="fa fa-circle" aria-hidden="true"></i> <i className="fa fa-shopping-cart me-1" aria-hidden="true"></i> </>
+                    : <i className="fa fa-shopping-cart me-1" aria-hidden="true"></i>
+                    
+                    
+                }
+
                 Pedidos
               </NavLink>
             </li>
