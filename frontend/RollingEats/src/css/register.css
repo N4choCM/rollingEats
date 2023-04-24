@@ -1,4 +1,4 @@
-body{
+.register-body{
     align-items: center;
     background-size: cover;
     background-attachment: fixed;
@@ -10,7 +10,7 @@ body{
     
   }
   
-  .container-login {
+  .container-register {
     height: 100vh;
     width: 100vh;
     display: flex;
@@ -21,7 +21,7 @@ body{
   
   }
   
-  .card-login {
+  .card-register {
     
     width: 90vh;
     max-width: 100vh;
@@ -37,7 +37,7 @@ body{
   }
   
   
-  img { 
+  .register-img { 
     float: left; 
     width: 15em; 
     height: 10em; 

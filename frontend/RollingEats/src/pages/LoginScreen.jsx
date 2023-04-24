@@ -82,7 +82,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                 </button>
               </div>
               <hr className="text-white" />
-              <Link to={`/register}`} className="text-white">
+              <Link to={`/register`} className="text-white">
               ¡Regístrate aquí! 😁
                         </Link>
 

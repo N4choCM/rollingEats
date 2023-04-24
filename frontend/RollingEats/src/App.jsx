@@ -5,7 +5,7 @@ import MainRoutes from "./routes/MainRoutes";
 import "./App.css";
 import LoginScreen from "./pages/LoginScreen";
 import ErrorScreen from "./pages/ErrorScreen";
-
+import RegisterScreen from "./pages/RegisterScreen";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -44,6 +44,12 @@ function App() {
               loginUser={loginUser}
               saveUser={saveUser}
             />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RegisterScreen />
           }
         />
       </Routes>
