@@ -24,6 +24,7 @@ const OrderScreen = ({ user }) => {
 
 	return (
 		<>
+    <br /><br /><br /><br />
 			{orders.length == 0 ? (
 				<div className="row">
 					<div className="col">
@@ -31,22 +32,26 @@ const OrderScreen = ({ user }) => {
 					</div>
 				</div>
 			) : (
-				<table className="table">
-					<thead>
-						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Fecha</th>
-							<th scope="col">Menú</th>
-							<th scope="col">¿En reparto?</th>
-							<th scope="col">Precio</th>
-						</tr>
-					</thead>
-					<tbody>
-						{orders.map((order) => (
-							<OrderTableRows orderProp={order} />
-						))}
-					</tbody>
-				</table>
+        <div className="m-5 table-responsive">
+          <table className="table table-hover table-striped table-bordered">
+            <thead className="bg-thead">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Menú</th>
+                <th scope="col">¿En reparto?</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cancelar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <OrderTableRows orderProp={order} />
+              ))}
+            </tbody>
+          </table>
+
+        </div>
 			)}
 		</>
 	);
