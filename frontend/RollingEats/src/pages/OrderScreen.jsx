@@ -8,12 +8,11 @@ import "../css/order.css";
 const OrderScreen = ({ user }) => {
 	const { uid } = user;
 
-	const [orders, setOrders] = useState(null);
+	const [orders, setOrders] = useState([]);
 
 	const [totalOrders, setTotalOrders] = useState(0);
 
 	useEffect(() => {
-		setOrders(null);
 		findOrdersByUser();
 	}, []);
 
@@ -25,7 +24,7 @@ const OrderScreen = ({ user }) => {
 
 	return (
 		<>
-			{!orders ? (
+			{orders.length == 0 ? (
 				<div className="row">
 					<div className="col">
 						<h3 className="text-white">Cargando...</h3> //! Spinner?
