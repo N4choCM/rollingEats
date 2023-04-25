@@ -35,27 +35,23 @@ const OrderTableRows = ({ orderProp }) => {
     });
   };
 
-
-
-
   useEffect(() => {
     const fetchMenus = async () => {
       const menus = await getMenus();
       setMenus(menus.menus);
     };
     fetchMenus();
-  }, []);
+}, []);
+const menu = menus.find((menu) => menu.name === orderProp.menu);
 
-  const menu = menus.find((menu) => menu._id === orderProp.menu);
-  
 
   return (
     <tr>
       <td>{orderProp._id}</td>
       <td>{orderProp.date}</td>
-      <td>{menu ? menu.name : ""}</td>
+      <td>{menu && menu.name }</td>
       <td>{orderProp.delivered ? "Sí" : "No"}</td>
-      <td>{menu ? menu.price : ""}</td>
+      <td>{menu && menu.price }</td>
       <td><button className="btn" onClick={() => cancelOrder(orderProp._id)}>        <i
           className="fa fa-trash text-danger"
           aria-hidden="true"
