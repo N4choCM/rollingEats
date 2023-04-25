@@ -30,7 +30,7 @@ const NavbarApp = ({ logoutUser, user }) => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/orders">
+              <NavLink className="nav-link" to="/orders" user={user}>
                 <i className="fa fa-shopping-cart me-1" aria-hidden="true"></i>
                 Pedidos
               </NavLink>
