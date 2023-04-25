@@ -10,6 +10,7 @@ const generateJWT = (uid) => {
         expiresIn: "31536000s",
       },
       (e, token) => {
+        console.log(token + " JWTGenerator")
         if (e) {
           console.log(e);
           reject("No se pudo generar el token.");

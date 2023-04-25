@@ -22,7 +22,6 @@ function App() {
 
   const logoutUser = () => {
     setLogin(false);
-    localStorage.removeItem("token")
   };
 
   return (
@@ -36,13 +35,12 @@ function App() {
             </ProtectedRoutes>
           }
         />
-        <Route path="*" element={<ErrorScreen />} />
         <Route
           path="/login"
           element={
             <LoginScreen
-              loginUser={loginUser}
-              saveUser={saveUser}
+            loginUser={loginUser}
+            saveUser={saveUser}
             />
           }
         />
@@ -52,6 +50,7 @@ function App() {
             <RegisterScreen />
           }
         />
+          <Route path="*" element={<ErrorScreen />} />
       </Routes>
     </BrowserRouter>
   );

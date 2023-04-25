@@ -3,12 +3,9 @@ import "../css/cards.css";
 import {createOrder} from "../helpers/OrderApi";
 
 const MenuCard = ({ menuProp, uid }) => {  
-console.log(uid)
 
   const handleCreateOrder = async (e, menuName, userId) => {
     e.preventDefault();
-    console.log(menuName)
-    console.log(userId)
 
     const data = ({
       user: userId,

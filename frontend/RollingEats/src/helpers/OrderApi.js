@@ -20,9 +20,9 @@ export const getOrders = async (limit = 0, page = 0) => {
   }
 };
 
-export const getordersByUser = async(user) => {
+export const getOrdersByUser = async(user) => {
   try {
-    const resp = await fetch(urk + "/" + user, {
+    const resp = await fetch(url + "/" + user, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
