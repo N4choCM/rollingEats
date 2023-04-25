@@ -1,9 +1,42 @@
 import React, { useEffect, useState } from "react";
 import "../css/order-table-rows.css";
 import { getMenus } from "../helpers/MenuApi";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { deleteOrderById } from "../helpers/OrderApi";
 
 const OrderTableRows = ({ orderProp }) => {
   const [menus, setMenus] = useState([]);
+
+  const MySwal = withReactContent(Swal);
+
+  // Modal management
+  const [show, setShow] = useState(false);
+  const [oid, setOid] = useState(null);
+
+  // Cancel Order
+  const cancelOrder = async (id) => {
+    MySwal.fire({
+      title: `Está seguro que quiere inactivar el pedido con ID ${id}?`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Sí",
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteOrderById(id).then((result) => {
+          console.log(result);
+          findOrdersByUser();
+          MySwal.fire("", `${result.msg}`, "success");
+        });
+      } else if (result.isDenied) {
+        MySwal.fire("El pedido no se pudo inactivar", "", "info");
+      }
+    });
+  };
+
+
+
 
   useEffect(() => {
     const fetchMenus = async () => {
@@ -13,7 +46,6 @@ const OrderTableRows = ({ orderProp }) => {
     fetchMenus();
   }, []);
 
-  // Busca el menú correspondiente al ID que se encuentra en la propiedad "orderProp"
   const menu = menus.find((menu) => menu._id === orderProp.menu);
   
 
@@ -24,11 +56,10 @@ const OrderTableRows = ({ orderProp }) => {
       <td>{menu ? menu.name : ""}</td>
       <td>{orderProp.delivered ? "Sí" : "No"}</td>
       <td>{menu ? menu.price : ""}</td>
-      <td>
-        <i
-          className="fa fa-trash d-flex justify-content-center text-danger"
+      <td><button className="btn" onClick={() => cancelOrder(orderProp._id)}>        <i
+          className="fa fa-trash text-danger"
           aria-hidden="true"
-        ></i>
+        ></i></button>
       </td>
     </tr>
   );

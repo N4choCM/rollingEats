@@ -21,7 +21,7 @@ const getOrders = async (req = request, res = response) => {
 // Finds all the orders paginated.
 const getOrdersByUser = async (req = request, res = response) => {
 	const { user } = req.params;
-	const orders = await Order.find({user: user})
+	const orders = await Order.find({user: user, status: true})
 	res.json({
 		orders,
 	});
