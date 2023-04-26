@@ -26,8 +26,6 @@ const LoginScreen = ({ loginUser, saveUser }) => {
     };
 
     const resp = await login(data);
-    console.log(resp); 
-    console.log(resp.token + " loginScreen") 
     if (resp?.token) {
       localStorage.setItem("token", JSON.stringify(resp.token));
       loginUser();

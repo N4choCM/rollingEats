@@ -36,7 +36,6 @@ const AdminUserScreen = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteUserById(id).then((result) => {
-          console.log(result);
           fetchData();
           MySwal.fire("", `${result.msg}`, "success");
         });

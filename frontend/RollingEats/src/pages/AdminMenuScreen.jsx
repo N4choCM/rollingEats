@@ -35,7 +35,6 @@ const AdminMenuScreen = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				deleteMenuById(id).then((result) => {
-					console.log(result);
 					fetchData();
 					MySwal.fire("", `${result.msg}`, "success");
 				});

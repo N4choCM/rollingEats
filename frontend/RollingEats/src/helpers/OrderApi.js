@@ -55,7 +55,6 @@ export const getOrderById = async (id) => {
 };
 
 export const createOrder = async (orderData) => {
-  console.log(orderData)
   try {
     const resp = await fetch(url, {
       method: "POST",

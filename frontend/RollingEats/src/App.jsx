@@ -13,7 +13,6 @@ function App() {
 
   const saveUser = (data) => {
     setUser(data);
-    console.log(user)
   };
 
   const loginUser = () => {

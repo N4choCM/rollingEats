@@ -6,7 +6,6 @@ const User = require("../models/User");
 
 const validateJWT = async (req = request, res = response, next) => {
   const token = req.header("x-token");
-  console.log(token + " jwt validator")
 
   // Checks if the token was sent.
   if (!token) {
