@@ -17,6 +17,18 @@ const getMenus = async (req = request, res = response) => {
 	});
 };
 
+// Finds all the menus paginated.
+const getMenusWithoutStatus = async (req = request, res = response) => {
+	const [total, menus] = await Promise.all([
+		Menu.countDocuments(),
+		Menu.find(),
+	]);
+	res.json({
+		total,
+		menus,
+	});
+};
+
 // Gets a menu by its ID.
 const getMenuById = async (req = request, res = response) => {
 	const { id } = req.params;
@@ -113,6 +125,7 @@ const deleteMenuById = async (req, res) => {
 
 module.exports = {
 	getMenus,
+	getMenusWithoutStatus,
 	getMenuById,
 	createMenu,
 	editMenu,

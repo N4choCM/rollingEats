@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUsers, deleteUserById } from "../helpers/UserApi";
+import { getUsersWithoutStatus, deleteUserById } from "../helpers/UserApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "../css/admin.css";
@@ -41,22 +41,21 @@ const AdminUserScreen = () => {
           MySwal.fire("", `${result.msg}`, "success");
         });
       } else if (result.isDenied) {
-        MySwal.fire("El usuario no se pudo inactivar", "", "info");
+        MySwal.fire("El usuario no pudo ser inactivado", "", "info");
       }
     });
   };
 
 
 	useEffect(() => {
-    
     fetchData();
 	}, []);
   
   const fetchData = async () => {
     try {
-      const response = await getUsers();
+      const response = await getUsersWithoutStatus();
       setUsers(response.users);
-    } catch (error) {
+    } catch (e) {
       console.error(error);
     }
   };
@@ -72,6 +71,7 @@ const AdminUserScreen = () => {
 						<th scope="col" className="text-center">Nombre</th>
 						<th scope="col" className="text-center">Email</th>
 						<th scope="col" className="text-center">Role</th>
+            <th scope="col" className="text-center">Estado</th>
 						<th scope="col" className="text-center">Acciones</th>
 					</tr>
 				</thead>
@@ -82,6 +82,7 @@ const AdminUserScreen = () => {
 							<td className="text-center">{user.name}</td>
 							<td className="text-center">{user.email}</td>
 							<td className="text-center">{user.role}</td>
+              <td className="text-center">{user.status ? "Activado" : "Desactivado"}</td>
 							<td className="text-center" >
 								<button className="btn" onClick={() => blockUser(user.uid)}>
 									<i className="fa fa-trash text-danger" aria-hidden="true"></i>

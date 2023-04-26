@@ -51,8 +51,8 @@ const AdminOrderScreen = () => {
     try {
       const response = await getOrders();
       setOrders(response.orders);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
   return (
@@ -79,9 +79,6 @@ const AdminOrderScreen = () => {
               <th scope="col" className="text-center">
                 ¿En reparto?
               </th>
-              <th scope="col" className="text-center">
-                Estado
-              </th>
             <th scope="col" className="text-center">
                 Acciones
               </th>
@@ -94,8 +91,7 @@ const AdminOrderScreen = () => {
                 <td className="text-center">{order.user}</td>
                 <td className="text-center">{order.date}</td>
                 <td className="text-center">{order.menu}</td>
-                <td className="text-center">{order.delivered}</td>
-                <td className="text-center">{order.status}</td>
+                <td className="text-center">{order.delivered ? "Sí" : "No"}</td>
                 <td className="text-center">
                   <button
                     className="btn"

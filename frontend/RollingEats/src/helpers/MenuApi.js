@@ -21,6 +21,24 @@ export const getMenus = async (from = 0, limit = 12) => {
   }
 };
 
+export const getMenusWithoutStatus = async () => {
+  try {
+    const resp = await fetch(url + "/menus-no-status", {
+      method: "GET",
+
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token.toString(),
+      },
+    });
+    const data = await resp.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+    throw new Error("No se consiguió obtener la información solicitada.");
+  }
+};
+
 export const getMenuById = async (id) => {
   try {
     const resp = await fetch(url + "/" + id, {

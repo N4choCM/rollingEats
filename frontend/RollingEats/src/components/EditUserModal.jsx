@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserById, editUserById } from "../helpers/UserApi";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
 import Modal from "react-bootstrap/Modal";
 
 const EditUserModal = ({ show, handleClose, uid }) => {
@@ -25,14 +23,12 @@ const EditUserModal = ({ show, handleClose, uid }) => {
         ...user,
         [e.target.name]: e.target.value,
       });
-    // }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await editUserById(uid, user);
-    MySwal.fire("Usuario actualizado", "", "success");
+    MySwal.fire("Usuario actualizado correctamente.", "", "success");
     handleClose();
   };
 

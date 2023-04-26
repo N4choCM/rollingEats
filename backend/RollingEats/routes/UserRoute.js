@@ -4,6 +4,7 @@ const { validateFields } = require("../middlewares/FieldValidator");
 
 const {
   getUsers,
+  getUsersWithoutStatus,
   getUserById,
   register,
   editUserById,
@@ -22,6 +23,8 @@ const { isUserAdmin } = require("../middlewares/RoleValidator");
 const router = Router();
 
 router.get("/", [validateJWT, isUserAdmin], getUsers);
+
+router.get("/users-no-status", getUsersWithoutStatus);
 
 router.get(
   "/:id",

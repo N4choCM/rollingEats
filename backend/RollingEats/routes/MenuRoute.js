@@ -3,6 +3,7 @@ const { check } = require("express-validator");
 const { validateFields } = require("../middlewares/FieldValidator");
 const {
 	getMenus,
+	getMenusWithoutStatus,
 	getMenuById,
 	createMenu,
 	editMenu,
@@ -15,6 +16,8 @@ const { isUserAdmin } = require("../middlewares/RoleValidator");
 const router = Router();
 
 router.get("/", getMenus);
+
+router.get("/menus-no-status", getMenusWithoutStatus);
 
 router.get(
 	"/:id",
