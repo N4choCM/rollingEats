@@ -2,7 +2,7 @@ const url = "http://localhost:8080/api/orders";
 const token = JSON.parse(localStorage.getItem("token"));
 const limit = 15;
 
-export const getOrders = async (limit = 0, page = 0) => {
+export const getOrders = async (limit = 15, page = 0) => {
   try {
     const resp = await fetch(url + "?to=" + limit + "&from=" + page, {
       method: "GET",
@@ -20,16 +20,16 @@ export const getOrders = async (limit = 0, page = 0) => {
   }
 };
 
-export const getordersByUser = async(user) => {
+export const getOrdersByUser = async(user) => {
   try {
-    const resp = await fetch(urk + "/" + user, {
+    const resp = await fetch(url + "/" + user, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         "x-token": token.toString(),
       },
     })
-    const data = resp.json;
+    const data = resp.json();
     return data;
   } catch (e) {
     console.log(e)

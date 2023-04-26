@@ -26,7 +26,8 @@ const LoginScreen = ({ loginUser, saveUser }) => {
     };
 
     const resp = await login(data);
-    console.log(resp);  
+    console.log(resp); 
+    console.log(resp.token + " loginScreen") 
     if (resp?.token) {
       localStorage.setItem("token", JSON.stringify(resp.token));
       loginUser();
@@ -82,7 +83,7 @@ const LoginScreen = ({ loginUser, saveUser }) => {
                 </button>
               </div>
               <hr className="text-white" />
-              <Link to={`/register}`} className="text-white">
+              <Link to={`/register`} className="text-white">
               ¡Regístrate aquí! 😁
                         </Link>
 

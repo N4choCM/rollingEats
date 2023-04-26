@@ -37,6 +37,7 @@ const HomeScreen = ({user}) => {
 
 	return (
 		<>
+		<main>
 			<section id="main" className="ancla">
 				<div
 					id="carouselExampleCaptions"
@@ -187,6 +188,7 @@ const HomeScreen = ({user}) => {
 					</div>
 				</div>
 			</div>
+		</main>
 		</>
 	);
 };

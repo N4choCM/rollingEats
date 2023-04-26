@@ -2,7 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import FooterApp from "../components/FooterApp";
 import NavbarApp from "../components/NavbarApp";
 import OrderScreen from "../pages/OrderScreen";
-import AdminScreen from "../pages/AdminScreen";
+import AdminUserScreen from "../pages/AdminUserScreen";
+import AdminMenuScreen from "../pages/AdminMenuScreen";
+import AdminOrderScreen from "../pages/AdminOrderScreen";
 import ErrorScreen from "../pages/ErrorScreen";
 import HomeScreen from "../pages/HomeScreen";
 import AdminProtectedRoutes from "./AdminProtectedRoutes";
@@ -15,10 +17,26 @@ const MainRoutes = ({ logoutUser, user }) => {
         <Route path="/" element={<HomeScreen user={user} />} />
         <Route path="/orders" element={<OrderScreen user={user} />} />
         <Route
-          path="/admin"
+          path="/admin/users"
           element={
             <AdminProtectedRoutes user={user}>
-              <AdminScreen />
+              <AdminUserScreen user={user} />
+            </AdminProtectedRoutes>
+          }
+        />
+        <Route
+          path="/admin/menus"
+          element={
+            <AdminProtectedRoutes user={user}>
+              <AdminMenuScreen user={user} />
+            </AdminProtectedRoutes>
+          }
+        />
+        <Route
+          path="/admin/orders"
+          element={
+            <AdminProtectedRoutes user={user}>
+              <AdminOrderScreen user={user} />
             </AdminProtectedRoutes>
           }
         />

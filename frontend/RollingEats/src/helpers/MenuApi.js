@@ -1,6 +1,7 @@
 const url = "http://localhost:8080/api/menus";
 const token = JSON.parse(localStorage.getItem("token"));
 // const limit = 12;
+console.log(token + " from MenuApi")
 
 export const getMenus = async (from = 0, limit = 12) => {
   try {

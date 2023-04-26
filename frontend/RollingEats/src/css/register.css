@@ -1,48 +1,15 @@
-body{
-    align-items: center;
-    background-size: cover;
-    background-attachment: fixed;
-    background-image: url(../assets/images/fondo.jpg);
-    background-repeat: no-repeat; 
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    
-  }
-  
-  .container-login {
-    height: 100vh;
-    width: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-  
-  }
-  
-  .card-login {
-    
-    width: 90vh;
-    max-width: 100vh;
-    padding:  1rem 2.5rem;
-    border-radius:  1rem;
-    backdrop-filter: blur(2rem);
-    border: 1px solid transparent;
-    box-shadow:  1.3rem 1.3rem 1.3rem rgba(0, 0, 0, 0);
-    border-top-color: rgba(225,225,225, 0.5);
-    border-left-color: rgba(225,225,225, 0.5);
-    border-bottom-color: rgba(225,225,225, 0.5);
-    border-right-color: rgba(225,225,225, 0.5);
-  }
-  
-  
-  img { 
-    float: left; 
-    width: 15em; 
-    height: 10em; 
-    margin-right: 1em; 
-    padding-left: 1rem;
-    align-items: center;
-    padding-top: 2rem;
-  }
+.body-bg{
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../assets/fondoLogin.jpg);
+}
+
+.logo{
+  width: 250px;
+}
