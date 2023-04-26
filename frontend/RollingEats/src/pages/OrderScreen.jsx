@@ -55,12 +55,12 @@ const OrderScreen = ({ user }) => {
 					<table className="table table-hover table-striped table-bordered">
 						<thead className="bg-thead">
 							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">Fecha</th>
-								<th scope="col">Menú</th>
-								<th scope="col">¿En reparto?</th>
-								<th scope="col">Precio</th>
-								<th scope="col">Cancelar</th>
+								<th scope="col" className="text-center">ID</th>
+								<th scope="col" className="text-center">Fecha</th>
+								<th scope="col" className="text-center">Menú</th>
+								<th scope="col" className="text-center">¿En reparto?</th>
+								<th scope="col" className="text-center">Precio</th>
+								<th scope="col" className="text-center">Cancelar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -70,12 +70,12 @@ const OrderScreen = ({ user }) => {
 						</tbody>
 						<tfoot>
 							<tr>
-								<th className="no-border"></th>
-                <th className="no-border"></th>
-								<th className="no-border"></th>
-								<th>Total: </th>
-								<th>{price}</th>
-								<th className="no-border"></th>
+								<th className="no-border text-center"></th>
+                <th className="no-border text-center"></th>
+								<th className="no-border text-center"></th>
+								<th className="text-center">Total: </th>
+								<th className="text-center">{price} €</th>
+								<th className="no-border text-center"></th>
 							</tr>
 						</tfoot>
 					</table>

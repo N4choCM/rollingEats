@@ -17,7 +17,7 @@ const OrderTableRows = ({ orderProp }) => {
   // Cancel Order
   const cancelOrder = async (id) => {
     MySwal.fire({
-      title: `Está seguro que quiere inactivar el pedido con ID ${id}?`,
+      title: `¿Está seguro de que quiere inactivar el pedido con ID ${id}?`,
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: "Sí",
@@ -47,12 +47,12 @@ const menu = menus.find((menu) => menu.name === orderProp.menu);
 
   return (
     <tr>
-      <td>{orderProp._id}</td>
-      <td>{orderProp.date}</td>
-      <td>{menu && menu.name }</td>
-      <td>{orderProp.delivered ? "Sí" : "No"}</td>
-      <td>{menu && menu.price }</td>
-      <td><button className="btn" onClick={() => cancelOrder(orderProp._id)}>        <i
+      <td className="text-center">{orderProp._id}</td>
+      <td className="text-center">{orderProp.date}</td>
+      <td className="text-center">{menu && menu.name }</td>
+      <td className="text-center">{orderProp.delivered ? "Sí" : "No"}</td>
+      <td className="text-center">{menu && menu.price } €</td>
+      <td className="text-center"><button className="btn" onClick={() => cancelOrder(orderProp._id)}>        <i
           className="fa fa-trash text-danger"
           aria-hidden="true"
         ></i></button>

@@ -4,7 +4,7 @@ const limit = 10;
 
 export const getUsers = async (page = 0) => {
   try {
-    const resp = await fetch(url + "?to=" + limit + "&from=" + page, {
+    const resp = await fetch(url, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",

@@ -5,7 +5,8 @@ import logo from "../assets/logo.png";
 
 const NavbarApp = ({ logoutUser, user }) => {
 	return (
-		<nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <header className="fixed-top">
+		<nav className="navbar navbar-expand-lg navbar-dark navbar-custom">
 			<div className="container">
 				<Link className="navbar-brand my-auto" to="/">
 					<img className="img-logo " src={logo} alt="logo" />
@@ -118,6 +119,7 @@ const NavbarApp = ({ logoutUser, user }) => {
 				</div>
 			</div>
 		</nav>
+    /</header>
 	);
 };
 

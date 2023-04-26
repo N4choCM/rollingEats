@@ -32,7 +32,7 @@ const login = async (req = request, res = response) => {
     }
 
     // Generates the token.
-    const token = await generateJWT(user.uid);
+    const token = await generateJWT(user._id);
     console.log(token + "in authController")
 
     res.json({
