@@ -42,7 +42,7 @@ const HomeScreen = ({ user }) => {
 					<div
 						id="carouselExampleCaptions"
 						className="carousel slide"
-						data-bs-ride="false"
+						data-bs-ride="carousel"
 					>
 						<div className="carousel-indicators">
 							<button
@@ -83,7 +83,7 @@ const HomeScreen = ({ user }) => {
 							</div>
 							<div className="carousel-item">
 								<img
-									src="https://editorialtelevisa.brightspotcdn.com/dims4/default/ef598b8/2147483647/strip/true/crop/995x560+3+0/resize/2000x1126!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-editorial-televisa.s3.amazonaws.com%2Fbrightspot%2Fwp-content%2Fuploads%2F2019%2F03%2Fpizza-gourmet-01.jpg"
+									src="https://images6.alphacoders.com/609/609345.jpg"
 									className="d-block w-100"
 									alt="Pizza"
 								/>
@@ -99,7 +99,7 @@ const HomeScreen = ({ user }) => {
 							</div>
 							<div className="carousel-item">
 								<img
-									src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Burrito.JPG/375px-Burrito.JPG"
+									src="https://restaurantclicks.com/wp-content/uploads/2022/01/mexican-restaurants-san-diego-california.jpg"
 									className="d-block w-100"
 									alt="Burrito"
 								/>

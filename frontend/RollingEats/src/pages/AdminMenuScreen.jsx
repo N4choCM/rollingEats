@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "../css/admin.css";
 import EditMenuModal from "../components/EditMenuModal";
+import CreateMenuModal from "../components/CreateMenuModal";
 
 const AdminMenuScreen = () => {
 	const [menus, setMenus] = useState([]);
@@ -12,17 +13,23 @@ const AdminMenuScreen = () => {
 
 	// Modal management
 	const [show, setShow] = useState(false);
+	const [showCreate, setShowCreate] = useState(false);
 	const [mid, setMid] = useState(null);
 
 	const handleClose = () => {
 		setMid(null);
 		setShow(false);
+		setShowCreate(false);
 		fetchData();
 	};
 
 	const handleShow = (id) => {
 		setMid(id);
 		setShow(true);
+	};
+
+	const handleShowCreate = () => {
+		setShowCreate(true);
 	};
 
 	const blockMenu = async (id) => {
@@ -82,6 +89,15 @@ const AdminMenuScreen = () => {
 							</th>
 							<th scope="col" className="text-center">
 								Acciones
+								<button
+									className="btn"
+									onClick={() => handleShowCreate()}
+								>
+									<i
+										className="fa fa-plus text-success"
+										aria-hidden="true"
+									></i>
+								</button>
 							</th>
 						</tr>
 					</thead>
@@ -90,11 +106,11 @@ const AdminMenuScreen = () => {
 							<tr key={menu.mid}>
 								<td className="text-center">{menu.id}</td>
 								<td className="text-center">{menu.name}</td>
-								<td className="text-center">
-									{menu.category}
-								</td>
+								<td className="text-center">{menu.category}</td>
 								<td className="text-center">{menu.price}</td>
-								<td className="text-center">{menu.status ? "Activado" : "Desactivado"}</td>
+								<td className="text-center">
+									{menu.status ? "Activado" : "Desactivado"}
+								</td>
 								<td className="text-center">
 									<button
 										className="btn"
@@ -125,6 +141,12 @@ const AdminMenuScreen = () => {
 					show={show}
 					handleClose={handleClose}
 					mid={mid}
+				/>
+			)}
+			{showCreate && (
+				<CreateMenuModal
+					showCreate={showCreate}
+					handleClose={handleClose}
 				/>
 			)}
 		</>
