@@ -17,6 +17,7 @@ const AdminUserScreen = () => {
   const handleClose = () => {
     setUid(null);
     setShow(false);
+    fetchData();
   };
 
   const handleShow = (id) => {
@@ -54,7 +55,6 @@ const AdminUserScreen = () => {
   const fetchData = async () => {
     try {
       const response = await getUsers();
-      console.log(response)
       setUsers(response.users);
     } catch (error) {
       console.error(error);

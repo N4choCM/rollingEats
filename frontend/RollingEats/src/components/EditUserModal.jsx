@@ -21,18 +21,6 @@ const EditUserModal = ({ show, handleClose, uid }) => {
   };
 
   const handleChange = (e) => {
-    // let valueCheck = false;
-    // if (e.target.name === "destacado") {
-    //   if (e.target.checked) {
-    //     valueCheck = true;
-    //   } else {
-    //     valueCheck = false;
-    //   }
-    //   setCurso({
-    //     ...curso,
-    //     [e.target.name]: valueCheck,
-    //   });
-    // } else {
       setUser({
         ...user,
         [e.target.name]: e.target.value,

@@ -23,9 +23,9 @@ const AdminMenuScreen = () => {
     setShow(true);
   };
 
-  const blockmenu = async (name, id) => {
+  const blockMenu = async (id) => {
     MySwal.fire({
-      title: `¿Está seguro que quiere inactivar el menu ${name}?`,
+      title: `¿Está seguro que quiere inactivar el menú con ID ${id}?`,
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: "Sí",
@@ -38,7 +38,7 @@ const AdminMenuScreen = () => {
           MySwal.fire("", `${result.msg}`, "success");
         });
       } else if (result.isDenied) {
-        MySwal.fire("El menu no se pudo inactivar", "", "info");
+        MySwal.fire("El Menú no pudo ser inactivado.", "", "info");
       }
     });
   };
@@ -66,9 +66,6 @@ const AdminMenuScreen = () => {
           <thead className="bg-thead">
             <tr>
               <th scope="col" className="text-center">
-                ID
-              </th>
-              <th scope="col" className="text-center">
                 Nombre
               </th>
               <th scope="col" className="text-center">
@@ -80,24 +77,26 @@ const AdminMenuScreen = () => {
               <th scope="col" className="text-center">
                 Precio
               </th>
+              <th scope="col" className="text-center">
+                Acciones
+              </th>
             </tr>
           </thead>
           <tbody>
             {menus.map((menu) => (
               <tr key={menu.mid}>
-                <td className="text-center">{menu.mid}</td>
                 <td className="text-center">{menu.name}</td>
                 <td className="text-center">{menu.description}</td>
                 <td className="text-center">{menu.category}</td>
                 <td className="text-center">{menu.price}</td>
-                <td className="text-center">
-                  <button className="btn" onClick={() => blockmenu(menu.mid)}>
+                <td className="text-center d-flex flex-row">
+                  <button className="btn" onClick={() => blockMenu(menu.id)}>
                     <i
                       className="fa fa-trash text-danger"
                       aria-hidden="true"
                     ></i>
                   </button>
-                  <button className="btn" onClick={() => handleShow(menu.mid)}>
+                  <button className="btn" onClick={() => handleShow(menu.id)}>
                     <i
                       className="fa fa-pencil text-warning"
                       aria-hidden="true"

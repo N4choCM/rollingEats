@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getMenuById, editMenuById } from "../helpers/MenuApi";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
 import Modal from "react-bootstrap/Modal";
 
 const EditMenuModal = ({ show, handleClose, mid }) => {
@@ -12,32 +10,36 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
   const [menu, setMenu] = useState(null);
 
   useEffect(() => {
-    traerDatosDeMenu();
+    findMenuData();
   }, []);
 
-  const traerDatosDeMenu = async () => {
+  const findMenuData = async () => {
     const { menu } = await getMenuById(mid);
+    console.log(menu)
     setMenu(menu);
   };
 
   const handleChange = (e) => {
-    setMenu({
-      ...menu,
-      [e.target.name]: e.target.value,
-    });
+      setMenu({
+        ...menu,
+        [e.target.name]: e.target.value,
+      });
+    // }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     await editMenuById(mid, menu);
-    MySwal.fire("Menu actualizado", "", "success");
+    MySwal.fire("Menú actualizado correctamente.", "", "success");
     handleClose();
   };
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Editar Menu</Modal.Title>
+          <Modal.Title>Editar Menú</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {menu ? (
@@ -50,22 +52,76 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
                 name="name"
                 onChange={handleChange}
               />
-              <label className="fw-bold">Descripcion</label>
-              <textarea
+              <label className="fw-bold">Descripción</label>
+              <input
+                type="text"
                 className="form-control"
                 value={menu.description}
-                onChange={handleChange}
                 name="description"
-              ></textarea>
-              <label className="fw-bold">Precio</label>
+                onChange={handleChange}
+              />
+                            <label className="fw-bold">Precio</label>
               <input
-                type="number"
+                type="text"
                 className="form-control"
                 value={menu.price}
-                onChange={handleChange}
                 name="price"
+                onChange={handleChange}
+              />
+              <label className="fw-bold">Imagen</label>
+              <input
+                type="text"
+                className="form-control"
+                value={menu.img}
+                name="img"
+                onChange={handleChange}
+              />
+              <label className="fw-bold">Estado</label>
+              <input
+                type="text"
+                className="form-control"
+                value={menu.status}
+                name="status"
+                onChange={handleChange}
               />
 
+              <div className="mb-3">
+                <label className="fw-bold">Cambiar categoría</label>
+                <select
+                  className="form-select"
+                  name="category"
+                  onChange={handleChange}
+                >
+                  <option value='VEGAN'>
+                    Elije una categoría
+                  </option>
+                  
+                      <option key="VEGAN" value="VEGAN">
+                        VEGAN
+                      </option>
+                      <option key="GLUTEN_FREE" value="GLUTEN_FREE">
+                        GLUTEN_FREE
+                      </option>
+                      <option key="ITALIAN" value="ITALIAN">
+                        ITALIAN
+                      </option>
+                      <option key="MEAT" value="MEAT">
+                        MEAT
+                      </option>
+                      <option key="FISH" value="GLUTEN_FREE">
+                        GLUTEN_FREE
+                      </option>
+                      <option key="JAPANESE" value="JAPANESE">
+                        JAPANESE
+                      </option>
+                      <option key="FAST_FOOD" value="FAST_FOOD">
+                        FAST_FOOD
+                      </option>
+                      <option key="MEXICAN" value="MEXICAN">
+                        MEXICAN
+                      </option>
+                </select>
+              </div>
               <div className="d-grid mt-2">
                 <button className="btn btn-warning">Actualizar</button>
               </div>
@@ -79,4 +135,4 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
   );
 };
 
-export default EditMenuModal;
+export default EditMenuModal
