@@ -32,7 +32,8 @@ const login = async (req = request, res = response) => {
     }
 
     // Generates the token.
-    const token = await generateJWT(user.id);
+    const token = await generateJWT(user._id);
+    console.log(token + "in authController")
 
     res.json({
       msg: "¡Login OK!",

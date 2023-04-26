@@ -5,7 +5,7 @@ import MainRoutes from "./routes/MainRoutes";
 import "./App.css";
 import LoginScreen from "./pages/LoginScreen";
 import ErrorScreen from "./pages/ErrorScreen";
-
+import RegisterScreen from "./pages/RegisterScreen";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -22,7 +22,6 @@ function App() {
 
   const logoutUser = () => {
     setLogin(false);
-    localStorage.removeItem("token")
   };
 
   return (
@@ -36,16 +35,22 @@ function App() {
             </ProtectedRoutes>
           }
         />
-        <Route path="*" element={<ErrorScreen />} />
         <Route
           path="/login"
           element={
             <LoginScreen
-              loginUser={loginUser}
-              saveUser={saveUser}
+            loginUser={loginUser}
+            saveUser={saveUser}
             />
           }
         />
+        <Route
+          path="/register"
+          element={
+            <RegisterScreen />
+          }
+        />
+          <Route path="*" element={<ErrorScreen />} />
       </Routes>
     </BrowserRouter>
   );
