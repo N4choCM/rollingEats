@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { getMenuById, editMenuById } from "../helpers/MenuApi";
 
 import Swal from "sweetalert2";
@@ -10,22 +10,15 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
   const MySwal = withReactContent(Swal);
 
   const [menu, setMenu] = useState(null);
-  //const [categorias, setCategorias] = useState(null);
 
   useEffect(() => {
     traerDatosDeMenu();
-    traerCategorias();
   }, []);
 
   const traerDatosDeMenu = async () => {
     const { menu } = await getMenuById(mid);
     setMenu(menu);
   };
-
-  // const traerCategorias = async () => {
-  //   const { categorias } = await getCategorias();
-  //   setCategorias(categorias);
-  // };
 
   const handleChange = (e) => {
     setMenu({
@@ -72,28 +65,7 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
                 onChange={handleChange}
                 name="price"
               />
-              {/* <div className="my-2">
-                <p>
-                  <span className="fw-bold">Categoría actual:</span>{" "}
-                  {menu.category.name}
-                </p>
-                <label className="fw-bold">Cambiar categoría</label>
-                <select
-                  className="form-select"
-                  name="category"
-                  onChange={handleChange}
-                >
-                  <option value={menu.category.name}>
-                    Elije una categoría
-                  </option>
-                  {categorias &&
-                    categorias.map((categoria) => (
-                      <option key={categoria._id} value={categoria._id}>
-                        {categoria.name}
-                      </option>
-                    ))}
-                </select>
-              </div> */}
+
               <div className="d-grid mt-2">
                 <button className="btn btn-warning">Actualizar</button>
               </div>
