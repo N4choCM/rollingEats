@@ -10,7 +10,6 @@ const AdminMenuScreen = () => {
 
   const MySwal = withReactContent(Swal);
 
-  // Modal management
   const [show, setShow] = useState(false);
   const [mid, setMid] = useState(null);
 
@@ -24,7 +23,6 @@ const AdminMenuScreen = () => {
     setShow(true);
   };
 
-  // Block Order
   const blockmenu = async (name, id) => {
     MySwal.fire({
       title: `¿Está seguro que quiere inactivar el menu ${name}?`,
@@ -68,6 +66,9 @@ const AdminMenuScreen = () => {
           <thead className="bg-thead">
             <tr>
               <th scope="col" className="text-center">
+                ID
+              </th>
+              <th scope="col" className="text-center">
                 Nombre
               </th>
               <th scope="col" className="text-center">
@@ -88,6 +89,7 @@ const AdminMenuScreen = () => {
                 <td className="text-center">{menu.name}</td>
                 <td className="text-center">{menu.description}</td>
                 <td className="text-center">{menu.category}</td>
+                <td className="text-center">{menu.price}</td>
                 <td className="text-center">
                   <button className="btn" onClick={() => blockmenu(menu.mid)}>
                     <i
