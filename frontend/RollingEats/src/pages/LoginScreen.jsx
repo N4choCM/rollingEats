@@ -54,7 +54,8 @@ const LoginScreen = ({ loginUser, saveUser }) => {
               Bienvenido a
             </h3>
             <div className="d-flex justify-content-center align-items-center">
-              <img src={logo} alt="logo" className="logo" />
+              <img src={logo} alt="logo" className="d-none d-md-block logo" />
+              <img src={logo} alt="logo" className="d-md-none logo-sm" />
             </div>
             <form onSubmit={handleLogin} className="py-4">
               <div className="mt-3 text-white">
