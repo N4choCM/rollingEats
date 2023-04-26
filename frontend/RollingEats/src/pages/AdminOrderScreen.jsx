@@ -23,9 +23,9 @@ const AdminOrderScreen = () => {
     setShow(true);
   };
 
-  const blockpedido = async (name, id) => {
+  const blockOrder = async (id) => {
     MySwal.fire({
-      title: `¿Está seguro que quiere inactivar el pedido ${name}?`,
+      title: `¿Está seguro que quiere inactivar el pedido con ID ${id}?`,
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: "Sí",
@@ -50,8 +50,7 @@ const AdminOrderScreen = () => {
   const fetchData = async () => {
     try {
       const response = await getOrders();
-      console.log(response);
-      setOrders(response.pedidos);
+      setOrders(response.orders);
     } catch (error) {
       console.error(error);
     }
@@ -69,27 +68,38 @@ const AdminOrderScreen = () => {
                 ID
               </th>
               <th scope="col" className="text-center">
-                Pedido
+                Usuario
+              </th>
+              <th scope="col" className="text-center">
+                Fecha
+              </th>
+              <th scope="col" className="text-center">
+                Menú
               </th>
               <th scope="col" className="text-center">
                 ¿En reparto?
               </th>
               <th scope="col" className="text-center">
-                Precio
+                Estado
+              </th>
+            <th scope="col" className="text-center">
+                Acciones
               </th>
             </tr>
           </thead>
           <tbody>
-            {orders.map((pedido) => (
-              <tr key={pedido.mid}>
-                <td className="text-center">{pedido.mid}</td>
-                <td className="text-center">{pedido.name}</td>
-                <td className="text-center">{pedido.reparto}</td>
-                <td className="text-center">{pedido.price}</td>
+            {orders.map((order) => (
+              <tr key={order._id}>
+                <td className="text-center">{order._id}</td>
+                <td className="text-center">{order.user}</td>
+                <td className="text-center">{order.date}</td>
+                <td className="text-center">{order.menu}</td>
+                <td className="text-center">{order.delivered}</td>
+                <td className="text-center">{order.status}</td>
                 <td className="text-center">
                   <button
                     className="btn"
-                    onClick={() => blockpedido(pedido.oid)}
+                    onClick={() => blockOrder(order._id)}
                   >
                     <i
                       className="fa fa-trash text-danger"
@@ -98,7 +108,7 @@ const AdminOrderScreen = () => {
                   </button>
                   <button
                     className="btn"
-                    onClick={() => handleShow(pedido.oid)}
+                    onClick={() => handleShow(order._id)}
                   >
                     <i
                       className="fa fa-pencil text-warning"

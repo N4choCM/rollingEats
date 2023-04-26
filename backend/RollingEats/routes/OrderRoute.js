@@ -16,7 +16,7 @@ const {
 
 const router = Router();
 
-router.get("/", [ isUserAdmin], getOrders);
+router.get("/", [validateJWT, isUserAdmin], getOrders);
 
 router.get(
 	"/:user",

@@ -4,12 +4,13 @@ const Order = require("../models/Order");
 //! Remove PutOrder. It doesn't make sense!
 // Finds all the orders paginated.
 const getOrders = async (req = request, res = response) => {
-	const { from = 0, to = 5 } = req.query;
+	// const { from = 0, to = 5 } = req.query;
 	const query = { status: true };
 
 	const [total, orders] = await Promise.all([
 		Order.countDocuments(query),
-		Order.find(query).skip(Number(from)).limit(Number(to)),
+		Order.find(query)
+		// .skip(Number(from)).limit(Number(to)),
 	]);
 
 	res.json({
