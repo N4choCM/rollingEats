@@ -24,7 +24,7 @@ const router = Router();
 
 router.get("/", [validateJWT, isUserAdmin], getUsers);
 
-router.get("/users-no-status", getUsersWithoutStatus);
+router.get("/users-no-status", [validateJWT], getUsersWithoutStatus);
 
 router.get(
   "/:id",
@@ -47,7 +47,7 @@ router.post(
     ).isLength({ min: 6 }),
     check("email", "No es un correo válido.").isEmail(),
     check("email").custom(isEmailUnique),
-    // check("role").custom(isRoleValid),
+    check("role").custom(isRoleValid),
     validateFields,
   ],
   register
