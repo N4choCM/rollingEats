@@ -48,6 +48,7 @@ const EditUserModal = ({ show, handleClose, uid }) => {
                 value={user.name}
                 name="name"
                 onChange={handleChange}
+                maxLength={40}
               />
               <label className="fw-bold">Email</label>
               <input
@@ -56,6 +57,7 @@ const EditUserModal = ({ show, handleClose, uid }) => {
                 value={user.email}
                 name="email"
                 onChange={handleChange}
+                maxLength={40}
               />
               <div className="my-2">
                 <p>

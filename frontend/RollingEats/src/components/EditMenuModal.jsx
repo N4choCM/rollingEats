@@ -49,6 +49,7 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
 								value={menu.name}
 								name="name"
 								onChange={handleChange}
+								maxLength={40}
 							/>
 							<label className="fw-bold">Descripción</label>
 							<input
@@ -57,6 +58,7 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
 								value={menu.description}
 								name="description"
 								onChange={handleChange}
+								maxLength={40}
 							/>
 							<label className="fw-bold">Precio</label>
 							<input
@@ -65,6 +67,7 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
 								value={menu.price}
 								name="price"
 								onChange={handleChange}
+								maxLength={40}
 							/>
 							<label className="fw-bold">Imagen</label>
 							<input
@@ -74,15 +77,6 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
 								name="img"
 								onChange={handleChange}
 							/>
-							<label className="fw-bold">Estado</label>
-							<input
-								type="text"
-								className="form-control"
-								value={menu.status}
-								name="status"
-								onChange={handleChange}
-							/>
-
 							<div className="mb-3">
 								<p>
 									<span className="fw-bold">Categoría:</span>{" "}
