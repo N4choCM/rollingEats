@@ -6,3 +6,7 @@
     width: 300px;
     height: 70px;
   }
+
+.social-hover:hover {
+    color: #F2C94C !important;
+}
