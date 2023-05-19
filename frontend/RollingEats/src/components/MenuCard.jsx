@@ -27,8 +27,8 @@ const MenuCard = ({ menuProp, uid }) => {
           <div>
             <p className="card-text">{menuProp.description}</p>
           </div>
-          <div className="mb-3 mt-2">
-            <p className="card-text text-end fw-bold">{menuProp.price} €</p>
+          <div className="mb-1 mt-2 text-end">
+            <p className="badge rounded-pill text-bg-rolling-eats fw-bold">{menuProp.price} €</p>
           </div>
 
           <button className="btn btn-card" onClick={(e) => handleCreateOrder(e, menuProp.name, uid)}>
