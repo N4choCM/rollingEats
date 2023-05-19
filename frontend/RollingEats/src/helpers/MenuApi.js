@@ -1,11 +1,28 @@
 const url = "http://localhost:8080/api/menus";
 const token = JSON.parse(localStorage.getItem("token"));
 // const limit = 12;
-console.log(token + " from MenuApi")
 
 export const getMenus = async (from = 0, limit = 12) => {
   try {
     const resp = await fetch(url + "?to=" + limit + "&from=" + from, {
+      method: "GET",
+
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token.toString(),
+      },
+    });
+    const data = await resp.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+    throw new Error("No se consiguió obtener la información solicitada.");
+  }
+};
+
+export const getMenusWithoutStatus = async () => {
+  try {
+    const resp = await fetch(url + "/menus-no-status", {
       method: "GET",
 
       headers: {

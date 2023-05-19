@@ -42,7 +42,8 @@ const RegisterScreen = () => {
               Bienvenido a
             </h3>
             <div className="d-flex justify-content-center align-items-center">
-              <img src={logo} alt="logo" className="logo" />
+              <img src={logo} alt="logo" className="d-md-none logo-sm" />
+              <img src={logo} alt="logo" className=" d-none d-md-block logo" />
             </div>
             <form onSubmit={handleRegister} className="py-4">
 						<div className="mt-3 text-white">

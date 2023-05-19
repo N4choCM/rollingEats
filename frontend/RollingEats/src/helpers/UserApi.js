@@ -19,6 +19,23 @@ export const getUsers = async (page = 0) => {
   }
 };
 
+export const getUsersWithoutStatus = async () => {
+  try {
+    const resp = await fetch(url + "/users-no-status", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token.toString(),
+      },
+    });
+    const data = await resp.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+    throw new Error("No se pudo obtener la información.");
+  }
+};
+
 export const getUserById = async (id) => {
   try {
     const resp = await fetch(url + "/" + id, {

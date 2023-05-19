@@ -4,7 +4,7 @@ const limit = 15;
 
 export const getOrders = async (limit = 15, page = 0) => {
   try {
-    const resp = await fetch(url + "?to=" + limit + "&from=" + page, {
+    const resp = await fetch(url, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -55,7 +55,6 @@ export const getOrderById = async (id) => {
 };
 
 export const createOrder = async (orderData) => {
-  console.log(orderData)
   try {
     const resp = await fetch(url, {
       method: "POST",

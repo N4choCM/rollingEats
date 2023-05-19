@@ -3,6 +3,7 @@ const { check } = require("express-validator");
 const { validateFields } = require("../middlewares/FieldValidator");
 const {
 	getMenus,
+	getMenusWithoutStatus,
 	getMenuById,
 	createMenu,
 	editMenu,
@@ -14,11 +15,13 @@ const { isUserAdmin } = require("../middlewares/RoleValidator");
 
 const router = Router();
 
-router.get("/", getMenus);
+router.get("/", [validateJWT], getMenus);
+
+router.get("/menus-no-status", [validateJWT, isUserAdmin], getMenusWithoutStatus);
 
 router.get(
 	"/:id",
-	[
+	[	validateJWT,
 		check("id", "El ID no es válido").isMongoId(),
 		check("id").custom(isMenuByIdUnique),
 		validateFields,
@@ -29,6 +32,7 @@ router.get(
 router.post(
 	"/",
 	[
+		validateJWT,
 		isUserAdmin,
 		check("name", "El nombre es obligatorio.").notEmpty(),
 		check("description", "La descripción es obligatoria.").notEmpty(),
@@ -44,6 +48,7 @@ router.post(
 router.put(
 	"/:id",
 	[
+		validateJWT,
 		isUserAdmin,
 		check("id", "No es un ID válido").isMongoId(),
 		check("id").custom(isMenuByIdUnique),
@@ -55,6 +60,7 @@ router.put(
 router.delete(
 	"/:id",
 	[
+		validateJWT,
 		isUserAdmin,
 		check("id", "No es un ID válido").isMongoId(),
 		check("id").custom(isMenuByIdUnique),

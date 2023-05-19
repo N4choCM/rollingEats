@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserById, editUserById } from "../helpers/UserApi";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
 import Modal from "react-bootstrap/Modal";
 
 const EditUserModal = ({ show, handleClose, uid }) => {
@@ -21,30 +19,16 @@ const EditUserModal = ({ show, handleClose, uid }) => {
   };
 
   const handleChange = (e) => {
-    // let valueCheck = false;
-    // if (e.target.name === "destacado") {
-    //   if (e.target.checked) {
-    //     valueCheck = true;
-    //   } else {
-    //     valueCheck = false;
-    //   }
-    //   setCurso({
-    //     ...curso,
-    //     [e.target.name]: valueCheck,
-    //   });
-    // } else {
       setUser({
         ...user,
         [e.target.name]: e.target.value,
       });
-    // }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await editUserById(uid, user);
-    MySwal.fire("Usuario actualizado", "", "success");
+    MySwal.fire("Usuario actualizado correctamente.", "", "success");
     handleClose();
   };
 
@@ -64,6 +48,7 @@ const EditUserModal = ({ show, handleClose, uid }) => {
                 value={user.name}
                 name="name"
                 onChange={handleChange}
+                maxLength={40}
               />
               <label className="fw-bold">Email</label>
               <input
@@ -72,6 +57,7 @@ const EditUserModal = ({ show, handleClose, uid }) => {
                 value={user.email}
                 name="email"
                 onChange={handleChange}
+                maxLength={40}
               />
               <div className="my-2">
                 <p>

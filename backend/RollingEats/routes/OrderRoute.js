@@ -16,11 +16,12 @@ const {
 
 const router = Router();
 
-router.get("/", [ isUserAdmin], getOrders);
+router.get("/", [validateJWT, isUserAdmin], getOrders);
 
 router.get(
 	"/:user",
 	[
+		validateJWT,
 		check("user", "El ID no es válido.").isMongoId(),
 		validateFields,
 	],
@@ -30,6 +31,7 @@ router.get(
 router.get(
 	"/:id",
 	[
+		validateJWT,
 		check("id", "El ID no es válido.").isMongoId(),
 		check("id").custom(isOrderByIdUnique),
 		validateFields,
@@ -37,11 +39,12 @@ router.get(
 	getOrderById
 );
 
-router.post("/", [ validateFields], createOrder);
+router.post("/", [validateJWT, validateFields], createOrder);
 
 router.put(
 	"/:id",
 	[
+		validateJWT,
 		isUserAdmin,
 		check("id", "El ID no es válido.").isMongoId(),
 		check("id").custom(isOrderByIdUnique),
@@ -53,6 +56,8 @@ router.put(
 router.delete(
 	"/:id",
 	[
+		validateJWT,
+		isUserAdmin,
 		check("id", "El ID no es válido.").isMongoId(),
 		check("id").custom(isOrderByIdUnique),
 		validateFields,

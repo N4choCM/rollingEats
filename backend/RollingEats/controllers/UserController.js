@@ -17,6 +17,18 @@ const getUsers = async (req = request, res = response) => {
   });
 };
 
+const getUsersWithoutStatus = async (req = request, res = response) => {
+  const [total, users] = await Promise.all([
+    User.countDocuments(),
+    User.find()
+  ]);
+
+  res.json({
+    total,
+    users,
+  });
+};
+
 const getUserById = async (req = request, res = response) => {
   const { id } = req.params;
 
@@ -96,6 +108,7 @@ const deleteUserById = async (req = request, res = response) => {
 module.exports = {
   getUserById,
   getUsers,
+  getUsersWithoutStatus,
   register,
   editUserById,
   deleteUserById,

@@ -3,7 +3,7 @@ const Menu = require("../models/Menu");
 
 // Finds all the menus paginated.
 const getMenus = async (req = request, res = response) => {
-	const { from = 0, to = 5 } = req.query;
+	const { from, to } = req.query;
 	const query = { status: true };
 
 	const [total, menus] = await Promise.all([
@@ -11,6 +11,18 @@ const getMenus = async (req = request, res = response) => {
 		Menu.find(query).skip(Number(from)).limit(Number(to)),
 	]);
 
+	res.json({
+		total,
+		menus,
+	});
+};
+
+// Finds all the menus paginated.
+const getMenusWithoutStatus = async (req = request, res = response) => {
+	const [total, menus] = await Promise.all([
+		Menu.countDocuments(),
+		Menu.find(),
+	]);
 	res.json({
 		total,
 		menus,
@@ -87,19 +99,33 @@ const editMenu = async (req, res) => {
 const deleteMenuById = async (req, res) => {
 	const { id } = req.params;
 
+	const menuData = req.menu;
+  
+	// Changes the status to false.
+	const menu = await Menu.findById(id);
+  
+	if (!menu.status) {
+	  return res.json({
+		message: "El usuario ha sido inactivado correctamente.",
+	  });
+	}
+  
 	const deletedMenu = await Menu.findByIdAndUpdate(
-		id,
-		{ status: false },
-		{ new: true }
+	  id,
+	  { status: false },
+	  { new: true }
 	);
-
+  
 	res.json({
-		msg: `El menú ${deletedMenu.name} ha sido inactivado correctamente.`,
+	  message: "Menu inactivado correctamente.",
+	  deletedMenu,
+	  menuData,
 	});
 };
 
 module.exports = {
 	getMenus,
+	getMenusWithoutStatus,
 	getMenuById,
 	createMenu,
 	editMenu,

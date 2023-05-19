@@ -25,7 +25,6 @@ const OrderTableRows = ({ orderProp }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteOrderById(id).then((result) => {
-          console.log(result);
           findOrdersByUser();
           MySwal.fire("", `${result.msg}`, "success");
         });
