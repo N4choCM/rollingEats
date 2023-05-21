@@ -64,7 +64,7 @@ const OrderScreen = ({ user }) => {
 									Menú
 								</th>
 								<th scope="col" className="text-center">
-									¿En reparto?
+									¿En preparación?
 								</th>
 								<th scope="col" className="text-center">
 									Precio

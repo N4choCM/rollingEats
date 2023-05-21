@@ -49,7 +49,7 @@ const menu = menus.find((menu) => menu.name === orderProp.menu);
       <td className="text-center">{orderProp._id}</td>
       <td className="text-center">{orderProp.date}</td>
       <td className="text-center">{menu && menu.name }</td>
-      <td className="text-center">{orderProp.delivered ? "Sí" : "No"}</td>
+      <td className={orderProp.delivered ? "text-center bg-green" : "text-center bg-red"}>{orderProp.delivered ? "Sí" : "No"}</td>
       <td className="text-center">{menu && menu.price } €</td>
       <td className="text-center"><button className="btn" onClick={() => cancelOrder(orderProp._id)}>        <i
           className="fa fa-trash text-danger"
