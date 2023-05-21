@@ -12,3 +12,13 @@
     color: white !important;
     background-color: #4C4C6D !important;
 }
+
+.btn-green{
+    color: white !important;
+    background-color: #5cb85c !important;
+}
+
+.btn-red{
+    color: white !important;
+    background-color: #dc3545 !important;
+}

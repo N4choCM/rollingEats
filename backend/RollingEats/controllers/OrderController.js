@@ -9,7 +9,7 @@ const getOrders = async (req = request, res = response) => {
 
 	const [total, orders] = await Promise.all([
 		Order.countDocuments(query),
-		Order.find(query)
+		Order.find(query),
 		// .skip(Number(from)).limit(Number(to)),
 	]);
 
@@ -22,7 +22,7 @@ const getOrders = async (req = request, res = response) => {
 // Finds all the orders paginated.
 const getOrdersByUser = async (req = request, res = response) => {
 	const { user } = req.params;
-	const orders = await Order.find({user: user, status: true})
+	const orders = await Order.find({ user: user, status: true });
 	res.json({
 		orders,
 	});
@@ -62,13 +62,13 @@ const createOrder = async (req = request, res = response) => {
 const editOrderById = async (req, res) => {
 	const { id } = req.params;
 	const { date, delivered, status } = req.body;
-  const user = req.user._id;
-  const menu = req.menu._id;
+	const user = req.body.user._id;
+	const menu = req.body.menu._id;
 
 	let data = {
-    user,
+		user,
 		date,
-    menu,
+		menu,
 		delivered,
 		status,
 	};
