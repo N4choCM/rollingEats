@@ -12,3 +12,13 @@
     color: white !important;
     background-color: #4C4C6D !important;
 }
+
+.bg-green {
+    background-color: #5cb85c !important;
+    color: white !important;
+}
+
+.bg-red {
+    background-color: #dc3545 !important;
+    color: white !important;
+}

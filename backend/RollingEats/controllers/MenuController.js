@@ -66,7 +66,7 @@ const createMenu = async (req, res = response) => {
 	await menu.save();
 	res.status(201).json({
 		menu,
-		msg: "¡Menu creado con éxito!",
+		msg: "¡Menú creado con éxito!",
 	});
 };
 
@@ -106,7 +106,7 @@ const deleteMenuById = async (req, res) => {
   
 	if (!menu.status) {
 	  return res.json({
-		message: "El usuario ha sido inactivado correctamente.",
+		message: "El menú ha sido inactivado correctamente.",
 	  });
 	}
   
@@ -117,7 +117,7 @@ const deleteMenuById = async (req, res) => {
 	);
   
 	res.json({
-	  message: "Menu inactivado correctamente.",
+	  message: "Menú inactivado correctamente.",
 	  deletedMenu,
 	  menuData,
 	});
