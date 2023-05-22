@@ -43,7 +43,7 @@ const AdminMenuScreen = () => {
 			if (result.isConfirmed) {
 				deleteMenuById(id).then((result) => {
 					fetchData();
-					MySwal.fire("", `${result.msg}`, "success");
+					MySwal.fire("", `${result.message}`, "success");
 				});
 			} else if (result.isDenied) {
 				MySwal.fire("El menú no pudo ser inactivado.", "", "info");
@@ -108,7 +108,7 @@ const AdminMenuScreen = () => {
 								<td className="text-center">{menu.name}</td>
 								<td className="text-center">{menu.category}</td>
 								<td className="text-center">{menu.price}</td>
-								<td className="text-center">
+								<td className={menu.status ? "text-center bg-green" : "text-center bg-red"}>
 									{menu.status ? "Activado" : "Desactivado"}
 								</td>
 								<td className="text-center">
