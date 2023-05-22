@@ -135,15 +135,6 @@ const AdminOrderScreen = () => {
                       aria-hidden="true"
                     ></i>
                   </button>
-                  <button
-                    className="btn"
-                    onClick={() => handleShow(order._id)}
-                  >
-                    <i
-                      className="fa fa-pencil text-warning"
-                      aria-hidden="true"
-                    ></i>
-                  </button>
                 </td>
               </tr>
             ))}
