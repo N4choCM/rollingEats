@@ -75,7 +75,7 @@ const OrderScreen = ({ user }) => {
 							</tr>
 						</thead>
 						<tbody>
-							{orders.map((order) => (
+							{orders?.map((order) => (
 								<OrderTableRows orderProp={order} />
 							))}
 						</tbody>
