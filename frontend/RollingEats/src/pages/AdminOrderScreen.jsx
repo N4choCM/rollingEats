@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getOrders, deleteOrderById, getOrderById, editOrderById } from "../helpers/OrderApi";
+import { getUserById } from "../helpers/UserApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "../css/admin.css";
@@ -39,6 +40,15 @@ const AdminOrderScreen = () => {
     }
   }
 
+  const getUserName = async (id) => {
+    try {
+      const response = await getUserById(id);
+      return response.user.name;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const blockOrder = async (id) => {
     MySwal.fire({
       title: `¿Está seguro que quiere inactivar el pedido con ID ${id}?`,
@@ -66,11 +76,18 @@ const AdminOrderScreen = () => {
   const fetchData = async () => {
     try {
       const response = await getOrders();
-      setOrders(response.orders);
+      const ordersWithUserName = await Promise.all(
+        response.orders.map(async (order) => {
+          const userName = await getUserName(order.user);
+          return { ...order, userName };
+        })
+      );
+      setOrders(ordersWithUserName);
     } catch (e) {
       console.error(e);
     }
   };
+
   return (
     <>
       <br />
@@ -104,7 +121,7 @@ const AdminOrderScreen = () => {
             {orders.map((order) => (
               <tr key={order._id}>
                 <td className="text-center">{order._id}</td>
-                <td className="text-center">{order.user}</td>
+                <td className="text-center">{order.userName}</td>
                 <td className="text-center">{order.date}</td>
                 <td className="text-center">{order.menu}</td>
                 <td className="text-center"><button className={order.delivered ? "btn btn-green" : "btn btn-red"} onClick={() => isDelivered(order._id)}>{order.delivered ? "Sí" : "No"}</button></td>
