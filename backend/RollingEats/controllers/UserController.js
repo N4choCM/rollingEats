@@ -99,7 +99,7 @@ const deleteUserById = async (req = request, res = response) => {
   );
 
   res.json({
-    message: "Usuario inactivo.",
+    message: "Usuario inactivado correctamente.",
     deletedUser,
     authUser,
   });

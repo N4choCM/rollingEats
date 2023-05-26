@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUsersWithoutStatus, deleteUserById } from "../helpers/UserApi";
+import { getUsersWithoutStatus, deleteUserById, getUserById, editUserById } from "../helpers/UserApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "../css/admin.css";
@@ -25,10 +25,23 @@ const AdminUserScreen = () => {
     setShow(true);
   };
 
+  const changeStatus = async (id) => {
+    try {
+      const response = await getUserById(id);
+      console.log(response)
+      const user = response.user;
+      user.status = !user.status;
+      const result = await editUserById(id, user);
+      fetchData();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   // Block Order
   const blockUser = async (id) => {
     MySwal.fire({
-      title: `¿Está seguro que quiere inactivar el usuario con ID ${id}?`,
+      title: `¿Está seguro de que quiere inactivar el usuario con ID ${id}?`,
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: "Sí",
@@ -37,7 +50,8 @@ const AdminUserScreen = () => {
       if (result.isConfirmed) {
         deleteUserById(id).then((result) => {
           fetchData();
-          MySwal.fire("", `${result.msg}`, "success");
+          console.log(result)
+          MySwal.fire("", `${result.message}`, "success");
         });
       } else if (result.isDenied) {
         MySwal.fire("El usuario no pudo ser inactivado", "", "info");
@@ -81,7 +95,7 @@ const AdminUserScreen = () => {
 							<td className="text-center">{user.name}</td>
 							<td className="text-center">{user.email}</td>
 							<td className="text-center">{user.role}</td>
-              <td className="text-center">{user.status ? "Activado" : "Desactivado"}</td>
+              <td className="text-center"><button className={user.status ? "btn btn-green" : "btn btn-red"} onClick={() => changeStatus(user.uid)}>{user.status ? "Activo" : "Inactivo"}</button></td>
 							<td className="text-center" >
 								<button className="btn" onClick={() => blockUser(user.uid)}>
 									<i className="fa fa-trash text-danger" aria-hidden="true"></i>
