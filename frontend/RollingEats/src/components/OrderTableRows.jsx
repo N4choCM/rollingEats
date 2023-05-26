@@ -3,10 +3,11 @@ import "../css/order-table-rows.css";
 import { getMenus } from "../helpers/MenuApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { deleteOrderById } from "../helpers/OrderApi";
+import { deleteOrderById, getOrdersByUser } from "../helpers/OrderApi";
 
-const OrderTableRows = ({ orderProp }) => {
+const OrderTableRows = ({ orderProp, uid, onOrderDelete }) => {
   const [menus, setMenus] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   const MySwal = withReactContent(Swal);
 
@@ -16,29 +17,43 @@ const OrderTableRows = ({ orderProp }) => {
 
   // Cancel Order
   const cancelOrder = async (id) => {
-    MySwal.fire({
-      title: `¿Está seguro de que quiere inactivar el pedido con ID ${id}?`,
-      showDenyButton: true,
-      showCancelButton: false,
-      confirmButtonText: "Sí",
-      denyButtonText: `No`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteOrderById(id).then((result) => {
-          findOrdersByUser();
-          MySwal.fire("", `${result.msg}`, "success");
-        });
-      } else if (result.isDenied) {
-        MySwal.fire("El pedido no se pudo inactivar", "", "info");
-      }
-    });
+		MySwal.fire({
+			title: `¿Está seguro de que quiere inactivar el pedido con ID ${id}?`,
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: "Sí",
+			denyButtonText: `No`,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				deleteOrderById(id).then((result) => {
+					fetchData();
+          if (onOrderDelete) {
+            onOrderDelete();
+          }
+					MySwal.fire("", `${result.msg}`, "success");
+				});
+			} else if (result.isDenied) {
+				MySwal.fire("El pedido no pudo ser inactivado.", "", "info");
+			}
+		});
+	};
+
+  const fetchMenus = async () => {
+    const menus = await getMenus();
+    setMenus(menus.menus);
   };
 
+  const fetchData = async () => {
+		try {
+			const response = await getOrdersByUser(uid);
+			// setMenus(response.menus);
+		} catch (e) {
+			console.error(e);
+		}
+	};
+
   useEffect(() => {
-    const fetchMenus = async () => {
-      const menus = await getMenus();
-      setMenus(menus.menus);
-    };
+    fetchData();
     fetchMenus();
 }, []);
 const menu = menus.find((menu) => menu.name === orderProp.menu);
