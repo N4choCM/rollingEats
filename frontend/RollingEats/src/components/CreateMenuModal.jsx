@@ -7,7 +7,11 @@ import Modal from "react-bootstrap/Modal";
 const CreateMenuModal = ({ showCreate, handleCloseCreate }) => {
 	const MySwal = withReactContent(Swal);
 
-	const [menu, setMenu] = useState({});
+	const [nameInput, setNameInput] = useState("");
+	const [descriptionInput, setDescriptionInput] = useState("");
+	const [categoryInput, setCategoryInput] = useState("");
+	const [priceInput, setPriceInput] = useState("");
+	const [imgInput, setImgInput] = useState("");
 
 	// useEffect(() => {
 	// 	findMenuData();
@@ -27,19 +31,17 @@ const CreateMenuModal = ({ showCreate, handleCloseCreate }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const form = document.querySelector("#menuForm");
-		const formData = new FormData(form);
-		const menuData = {};
-		
-		for (let [key, value] of formData.entries()) {
-		  menuData[key] = value;
-		}
-		
-		setMenu(menuData);
-		await createMenu(menuData);
-		MySwal.fire("Menú añadido correctamente.", "", "success");
+		const data = {
+			name: nameInput,
+		  	description: descriptionInput,
+		  	category: categoryInput,
+			price: priceInput,
+			img: imgInput,
+			status: true
+		};
+		const resp = await createMenu(data);
 		handleCloseCreate();
-	  };
+	};
 
 	return (
 		<>
@@ -53,18 +55,18 @@ const CreateMenuModal = ({ showCreate, handleCloseCreate }) => {
 						<input
 							type="text"
 							className="form-control"
-							value={menu.name}
+							value={nameInput}
 							name="name"
-							onChange={handleChange}
+							onChange={(e) => setNameInput(e.target.value)}
 							maxLength={40}
 						/>
 						<label className="fw-bold">Descripción</label>
 						<input
 							type="text"
 							className="form-control"
-							value={menu.description}
+							value={descriptionInput}
 							name="description"
-							onChange={handleChange}
+							onChange={(e) => setDescriptionInput(e.target.value)}
 							maxLength={40}
 						/>
 						<div className="mb-3">
@@ -74,9 +76,9 @@ const CreateMenuModal = ({ showCreate, handleCloseCreate }) => {
 							<select
 								className="form-select"
 								name="category"
-								onChange={handleChange}
-							>
-								<option value={menu.category}>
+								onChange={(e) => setCategoryInput(e.target.value)}
+								>
+								<option value={categoryInput}>
 									Elije una categoría
 								</option>
 
@@ -113,23 +115,23 @@ const CreateMenuModal = ({ showCreate, handleCloseCreate }) => {
 						<input
 							type="text"
 							className="form-control"
-							value={menu.price}
+							value={priceInput}
 							name="price"
-							onChange={handleChange}
+							onChange={(e) => setPriceInput(e.target.value)}
 							maxLength={40}
 						/>
 						<label className="fw-bold">Imagen</label>
 						<input
 							type="text"
 							className="form-control"
-							value={menu.img}
+							value={imgInput}
 							name="img"
-							onChange={handleChange}
+							onChange={(e) => setImgInput(e.target.value)}
 						/>
 						
 						<div className="d-grid mt-2">
 							<button className="btn btn-success">
-								Añadir
+								Añadir menú
 							</button>
 						</div>
 					</form>
