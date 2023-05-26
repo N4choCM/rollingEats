@@ -19,7 +19,6 @@ const AdminMenuScreen = () => {
 	const handleClose = () => {
 		setMid(null);
 		setShow(false);
-		setShowCreate(false);
 		fetchData();
 	};
 
@@ -30,6 +29,11 @@ const AdminMenuScreen = () => {
 
 	const handleShowCreate = () => {
 		setShowCreate(true);
+	};
+
+	const handleCloseCreate = () => {
+		setShowCreate(false);
+		fetchData();
 	};
 
 	const blockMenu = async (id) => {
@@ -146,7 +150,7 @@ const AdminMenuScreen = () => {
 			{showCreate && (
 				<CreateMenuModal
 					showCreate={showCreate}
-					handleClose={handleClose}
+					handleCloseCreate={handleCloseCreate}
 				/>
 			)}
 		</>
