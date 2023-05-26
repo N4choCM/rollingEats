@@ -37,6 +37,10 @@ const OrderScreen = ({ user }) => {
 		setOrders(orders);
 	};
 
+	const updateOrders = () => {
+		findOrdersByUser();
+	  };
+
 	return (
 		<>
 			<br />
@@ -76,7 +80,7 @@ const OrderScreen = ({ user }) => {
 						</thead>
 						<tbody>
 							{orders?.map((order) => (
-								<OrderTableRows orderProp={order} />
+								<OrderTableRows orderProp={order} uid={uid} onOrderDelete={updateOrders} />
 							))}
 						</tbody>
 						<tfoot>
