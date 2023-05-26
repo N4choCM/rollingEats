@@ -130,7 +130,12 @@ const EditMenuModal = ({ show, handleClose, mid }) => {
 							</div>
 						</form>
 					) : (
-						<h3>Cargando...</h3>
+						<>
+						<div class="spinner-border custom-spinner" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+						</>
 					)}
 				</Modal.Body>
 			</Modal>
