@@ -44,11 +44,12 @@ const OrderScreen = ({ user }) => {
 			<br />
 			<br />
 			{orders.length == 0 ? (
-				<div className="row">
-					<div className="col">
-						<h3 className="text-white">Cargando...</h3> //! Spinner?
-					</div>
+				<>
+				<div class="spinner-border custom-spinner" role="status">
+					<span class="visually-hidden">Loading...</span>
 				</div>
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+				</>
 			) : (
 				<div className="m-5 table-responsive">
 					<table className="table table-hover table-striped table-bordered">
@@ -84,8 +85,12 @@ const OrderScreen = ({ user }) => {
 								<th className="no-border text-center"></th>
 								<th className="no-border text-center"></th>
 								<th className="no-border text-center"></th>
-								<th className="text-center border-bottom">Total: </th>
-								<th className="text-center border-bottom">{price} €</th>
+								<th className="text-center border-bottom">
+									Total:{" "}
+								</th>
+								<th className="text-center border-bottom">
+									{price} €
+								</th>
 								<th className="no-border text-center"></th>
 							</tr>
 						</tfoot>
