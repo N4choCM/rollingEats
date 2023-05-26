@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getOrders, deleteOrderById } from "../helpers/OrderApi";
+import { getOrders, deleteOrderById, getOrderById, editOrderById } from "../helpers/OrderApi";
+import { getUserById } from "../helpers/UserApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "../css/admin.css";
@@ -21,6 +22,31 @@ const AdminOrderScreen = () => {
   const handleShow = (id) => {
     setOid(id);
     setShow(true);
+  };
+
+  const isDelivered = async (id) => {
+    try {
+      const response = await getOrderById(id);
+      const order = response.order;
+      console.log(order.delivered)
+      order.delivered = !order.delivered;
+      // const data = {
+      //   delivered: order.delivered
+      // }
+      const result = await editOrderById(id, order);
+      fetchData();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  const getUserName = async (id) => {
+    try {
+      const response = await getUserById(id);
+      return response.user.name;
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const blockOrder = async (id) => {
@@ -50,11 +76,18 @@ const AdminOrderScreen = () => {
   const fetchData = async () => {
     try {
       const response = await getOrders();
-      setOrders(response.orders);
+      const ordersWithUserName = await Promise.all(
+        response.orders.map(async (order) => {
+          const userName = await getUserName(order.user);
+          return { ...order, userName };
+        })
+      );
+      setOrders(ordersWithUserName);
     } catch (e) {
       console.error(e);
     }
   };
+
   return (
     <>
       <br />
@@ -77,7 +110,7 @@ const AdminOrderScreen = () => {
                 Menú
               </th>
               <th scope="col" className="text-center">
-                ¿En reparto?
+                ¿En preparación?
               </th>
             <th scope="col" className="text-center">
                 Acciones
@@ -88,10 +121,10 @@ const AdminOrderScreen = () => {
             {orders.map((order) => (
               <tr key={order._id}>
                 <td className="text-center">{order._id}</td>
-                <td className="text-center">{order.user}</td>
+                <td className="text-center">{order.userName}</td>
                 <td className="text-center">{order.date}</td>
                 <td className="text-center">{order.menu}</td>
-                <td className="text-center">{order.delivered ? "Sí" : "No"}</td>
+                <td className="text-center"><button className={order.delivered ? "btn btn-green" : "btn btn-red"} onClick={() => isDelivered(order._id)}>{order.delivered ? "Sí" : "No"}</button></td>
                 <td className="text-center">
                   <button
                     className="btn"
@@ -99,15 +132,6 @@ const AdminOrderScreen = () => {
                   >
                     <i
                       className="fa fa-trash text-danger"
-                      aria-hidden="true"
-                    ></i>
-                  </button>
-                  <button
-                    className="btn"
-                    onClick={() => handleShow(order._id)}
-                  >
-                    <i
-                      className="fa fa-pencil text-warning"
                       aria-hidden="true"
                     ></i>
                   </button>

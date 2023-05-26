@@ -64,7 +64,7 @@ const OrderScreen = ({ user }) => {
 									Menú
 								</th>
 								<th scope="col" className="text-center">
-									¿En reparto?
+									¿En preparación?
 								</th>
 								<th scope="col" className="text-center">
 									Precio
@@ -75,17 +75,17 @@ const OrderScreen = ({ user }) => {
 							</tr>
 						</thead>
 						<tbody>
-							{orders.map((order) => (
+							{orders?.map((order) => (
 								<OrderTableRows orderProp={order} />
 							))}
 						</tbody>
 						<tfoot>
-							<tr>
+							<tr className="no-border">
 								<th className="no-border text-center"></th>
 								<th className="no-border text-center"></th>
 								<th className="no-border text-center"></th>
-								<th className="text-center">Total: </th>
-								<th className="text-center">{price} €</th>
+								<th className="text-center border-bottom">Total: </th>
+								<th className="text-center border-bottom">{price} €</th>
 								<th className="no-border text-center"></th>
 							</tr>
 						</tfoot>

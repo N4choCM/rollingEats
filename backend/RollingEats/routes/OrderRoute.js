@@ -19,16 +19,6 @@ const router = Router();
 router.get("/", [validateJWT, isUserAdmin], getOrders);
 
 router.get(
-	"/:user",
-	[
-		validateJWT,
-		check("user", "El ID no es válido.").isMongoId(),
-		validateFields,
-	],
-	getOrdersByUser
-);
-
-router.get(
 	"/:id",
 	[
 		validateJWT,
@@ -37,6 +27,16 @@ router.get(
 		validateFields,
 	],
 	getOrderById
+);
+
+router.get(
+	"/users/:user",
+	[
+		validateJWT,
+		check("user", "El ID no es válido.").isMongoId(),
+		validateFields,
+	],
+	getOrdersByUser
 );
 
 router.post("/", [validateJWT, validateFields], createOrder);

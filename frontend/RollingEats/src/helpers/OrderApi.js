@@ -22,7 +22,7 @@ export const getOrders = async (limit = 15, page = 0) => {
 
 export const getOrdersByUser = async(user) => {
   try {
-    const resp = await fetch(url + "/" + user, {
+    const resp = await fetch(url + "/users/" + user, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -84,9 +84,7 @@ export const editOrderById = async (id, orderData) => {
         "x-token": token.toString(),
       },
     });
-
     const data = await resp.json();
-
     return data;
   } catch (e) {
     console.log(e);

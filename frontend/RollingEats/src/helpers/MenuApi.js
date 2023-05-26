@@ -85,9 +85,7 @@ export const editMenuById = async (id, menuData) => {
         "x-token": token.toString(),
       },
     });
-
     const data = await resp.json();
-
     return data;
   } catch (e) {
     console.log(e);
