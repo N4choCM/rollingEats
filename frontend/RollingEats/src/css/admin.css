@@ -18,9 +18,19 @@
     background-color: #5cb85c !important;
 }
 
+.btn-green:hover{
+    color: white !important;
+    background-color: #4c994c !important;
+}
+
 .btn-red{
     color: white !important;
     background-color: #dc3545 !important;
+}
+
+.btn-red:hover{
+    color: white !important;
+    background-color: #b03a3a !important;
 }
 
 .bg-green {
