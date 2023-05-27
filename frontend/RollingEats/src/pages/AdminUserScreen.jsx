@@ -28,11 +28,15 @@ const AdminUserScreen = () => {
   const changeStatus = async (id) => {
     try {
       const response = await getUserById(id);
-      console.log(response)
       const user = response.user;
-      user.status = !user.status;
-      const result = await editUserById(id, user);
-      fetchData();
+      if(user.role === "ADMIN_ROLE"){
+        MySwal.fire("No se puede bloquear a un administrador", "", "info");
+        return;
+      }else{
+        user.status = !user.status;
+        const result = await editUserById(id, user);
+        fetchData();
+      }
     } catch (e) {
       console.error(e);
     }
@@ -40,23 +44,29 @@ const AdminUserScreen = () => {
 
   // Block Order
   const blockUser = async (id) => {
-    MySwal.fire({
-      title: `¿Está seguro de que quiere inactivar el usuario con ID ${id}?`,
-      showDenyButton: true,
-      showCancelButton: false,
-      confirmButtonText: "Sí",
-      denyButtonText: `No`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteUserById(id).then((result) => {
-          fetchData();
-          console.log(result)
-          MySwal.fire("", `${result.message}`, "success");
-        });
-      } else if (result.isDenied) {
-        MySwal.fire("El usuario no pudo ser inactivado", "", "info");
-      }
-    });
+    const response = await getUserById(id);
+    if(response.user.role === "ADMIN_ROLE"){
+      MySwal.fire("No se puede bloquear a un administrador", "", "info");
+      return;
+    }else{
+      MySwal.fire({
+        title: `¿Está seguro de que quiere inactivar el usuario con ID ${id}?`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "Sí",
+        denyButtonText: `No`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteUserById(id).then((result) => {
+            fetchData();
+            console.log(result)
+            MySwal.fire("", `${result.message}`, "success");
+          });
+        } else if (result.isDenied) {
+          MySwal.fire("El usuario no pudo ser inactivado", "", "info");
+        }
+      });
+    }
   };
 
 
