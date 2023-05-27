@@ -60,9 +60,6 @@ const OrderScreen = ({ user }) => {
 						<thead className="bg-thead">
 							<tr>
 								<th scope="col" className="text-center">
-									ID
-								</th>
-								<th scope="col" className="text-center">
 									Fecha
 								</th>
 								<th scope="col" className="text-center">
@@ -88,7 +85,6 @@ const OrderScreen = ({ user }) => {
 							<tr className="no-border">
 								<th className="no-border text-center"></th>
 								<th className="no-border text-center"></th>
-								<th className="no-border text-center"></th>
 								<th className="text-center border-bottom">
 									Total:{" "}
 								</th>
@@ -99,7 +95,6 @@ const OrderScreen = ({ user }) => {
 							</tr>
 						</tfoot>
 					</table>
-					<button className="btn btn-pay">Tramitar pedido</button>
 				</div>
 			)}
 		</>

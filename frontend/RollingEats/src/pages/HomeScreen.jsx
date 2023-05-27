@@ -184,12 +184,12 @@ const HomeScreen = ({ user }) => {
 							</div>
 						</div>
 						{!menus ? (
-							<div className="row">
-								<div className="col">
-									<h3 className="text-white">Cargando...</h3>{" "}
-									//! Spinner?
-								</div>
+							<>
+							<div class="spinner-border custom-spinner" role="status">
+								<span class="visually-hidden">Loading...</span>
 							</div>
+							<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+							</>
 						) : (
 							<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-3 ">
 								{menus.map((menu) => (
