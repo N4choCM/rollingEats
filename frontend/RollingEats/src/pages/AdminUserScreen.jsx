@@ -7,6 +7,7 @@ import EditUserModal from "../components/EditUserModal";
 
 const AdminUserScreen = () => {
 	const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const MySwal = withReactContent(Swal);
 
@@ -78,6 +79,7 @@ const AdminUserScreen = () => {
     try {
       const response = await getUsersWithoutStatus();
       setUsers(response.users);
+      setLoading(false);
     } catch (e) {
       console.error(error);
     }
@@ -86,6 +88,14 @@ const AdminUserScreen = () => {
 	return (
     <>
     <br /><br /><br />
+    {loading == true ? (
+				<>
+				<div class="spinner-border custom-spinner" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+				</>
+			) : (
 		<div className="m-5 table-responsive">
 			<table className="table table-hover table-striped table-bordered">
 				<thead className="bg-thead">
@@ -119,6 +129,7 @@ const AdminUserScreen = () => {
 				</tbody>
 			</table>
 		</div>
+      )}
     {show && (
         <EditUserModal show={show} handleClose={handleClose} uid={uid} />
       )}

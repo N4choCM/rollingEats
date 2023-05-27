@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getMenusWithoutStatus, deleteMenuById } from "../helpers/MenuApi";
+import { getMenusWithoutStatus, deleteMenuById, getMenuById, editMenuById } from "../helpers/MenuApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "../css/admin.css";
@@ -8,6 +8,7 @@ import CreateMenuModal from "../components/CreateMenuModal";
 
 const AdminMenuScreen = () => {
 	const [menus, setMenus] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	const MySwal = withReactContent(Swal);
 
@@ -36,6 +37,18 @@ const AdminMenuScreen = () => {
 		fetchData();
 	};
 
+	const changeStatus = async (id) => {
+		try {
+			const response = await getMenuById(id);
+			const menu = response.menu;
+			menu.status = !menu.status;
+			const result = await editMenuById(id, menu);
+			fetchData();
+		} catch (e) {
+		  console.error(e);
+		}
+	  }
+
 	const blockMenu = async (id) => {
 		MySwal.fire({
 			title: `¿Está seguro de que quiere inactivar el menú con ID ${id}?`,
@@ -63,6 +76,7 @@ const AdminMenuScreen = () => {
 		try {
 			const response = await getMenusWithoutStatus();
 			setMenus(response.menus);
+			setLoading(false);
 		} catch (e) {
 			console.error(e);
 		}
@@ -72,6 +86,14 @@ const AdminMenuScreen = () => {
 			<br />
 			<br />
 			<br />
+			{loading == true ? (
+				<>
+				<div class="spinner-border custom-spinner" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+				</>
+			) : (
 			<div className="m-5 table-responsive">
 				<table className="table table-hover table-striped table-bordered">
 					<thead className="bg-thead">
@@ -115,7 +137,7 @@ const AdminMenuScreen = () => {
 								<td className="text-center">
 									<button 
 										className={menu.status ? "btn btn-green" : "btn btn-red"} 
-										onClick={() => blockMenu(menu.id)}
+										onClick={() => changeStatus(menu.id)}
 									>
 										{menu.status ? "Activo" : "Inactivo"}
 									</button>
@@ -145,6 +167,7 @@ const AdminMenuScreen = () => {
 					</tbody>
 				</table>
 			</div>
+			)}
 			{show && (
 				<EditMenuModal
 					show={show}
