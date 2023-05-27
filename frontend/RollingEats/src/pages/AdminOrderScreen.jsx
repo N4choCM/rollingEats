@@ -13,6 +13,7 @@ const AdminOrderScreen = () => {
 
   const [show, setShow] = useState(false);
   const [oid, setOid] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleClose = () => {
     setOid(null);
@@ -30,9 +31,6 @@ const AdminOrderScreen = () => {
       const order = response.order;
       console.log(order.delivered)
       order.delivered = !order.delivered;
-      // const data = {
-      //   delivered: order.delivered
-      // }
       const result = await editOrderById(id, order);
       fetchData();
     } catch (e) {
@@ -83,6 +81,7 @@ const AdminOrderScreen = () => {
         })
       );
       setOrders(ordersWithUserName);
+      setLoading(false);
     } catch (e) {
       console.error(e);
     }
@@ -93,6 +92,14 @@ const AdminOrderScreen = () => {
       <br />
       <br />
       <br />
+      {loading == true ? (
+				<>
+				<div class="spinner-border custom-spinner" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+				</>
+			) : (
       <div className="m-5 table-responsive">
         <table className="table table-hover table-striped table-bordered">
           <thead className="bg-thead">
@@ -141,6 +148,7 @@ const AdminOrderScreen = () => {
           </tbody>
         </table>
       </div>
+      )}
       {show && (
         <EditOrderModal show={show} handleClose={handleClose} oid={oid} />
       )}

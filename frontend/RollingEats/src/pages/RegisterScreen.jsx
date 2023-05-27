@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 const RegisterScreen = () => {
 	const navigate = useNavigate(); 
 
-
   const [emailInput, setEmailInput] = useState("");
 	const [nameInput, setNameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
