@@ -95,7 +95,6 @@ const OrderScreen = ({ user }) => {
 							</tr>
 						</tfoot>
 					</table>
-					<button className="btn btn-pay">Tramitar pedido</button>
 				</div>
 			)}
 		</>
