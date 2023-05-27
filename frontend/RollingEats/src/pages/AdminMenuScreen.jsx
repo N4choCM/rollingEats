@@ -112,8 +112,13 @@ const AdminMenuScreen = () => {
 								<td className="text-center">{menu.name}</td>
 								<td className="text-center">{menu.category}</td>
 								<td className="text-center">{menu.price}</td>
-								<td className={menu.status ? "text-center bg-green" : "text-center bg-red"}>
-									{menu.status ? "Activado" : "Desactivado"}
+								<td className="text-center">
+									<button 
+										className={menu.status ? "btn btn-green" : "btn btn-red"} 
+										onClick={() => blockMenu(menu.id)}
+									>
+										{menu.status ? "Activo" : "Inactivo"}
+									</button>
 								</td>
 								<td className="text-center">
 									<button
