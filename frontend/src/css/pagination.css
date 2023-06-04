@@ -1,0 +1,8 @@
+.active .page-link{
+    background: #4C4C6D !important;
+    color: white !important;
+}
+
+.page-link{
+    color: black !important;
+}

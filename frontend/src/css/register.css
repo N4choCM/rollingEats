@@ -1,0 +1,19 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.body-bg{
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../assets/fondoLogin.jpg);
+}
+
+.logo{
+  width: 250px;
+}
+
+.logo-sm{
+  width: 150px;
+}

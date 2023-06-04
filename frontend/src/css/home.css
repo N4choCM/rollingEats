@@ -1,0 +1,48 @@
+.bg-home {
+	background-color: #d9b08c;
+	color: white;
+	/* height: 100vh; */
+}
+
+/* carousel */
+#main .carousel-item img {
+	height: 100vh;
+	filter: grayscale(70%);
+	object-fit: cover;
+}
+
+#carousel {
+	position: relative;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	z-index: 1;
+}
+
+.ancla:before {
+	display: block;
+	content: " ";
+	margin-top: -74px;
+	height: 74px;
+}
+
+.text-bg-custom {
+	background-color: rgba(0, 0, 0, 0.3); /* black with 50% transparency */
+	border-radius: 10px;
+}
+
+.btn-custom {
+	background-color: #4c4c6d !important;
+}
+
+.btn-custom:hover {
+	background-color: #d9b08c !important;
+	border-color: #4c4c6d !important;
+}

@@ -1,0 +1,14 @@
+.bg-thead{
+    background-color: #4C4C6D !important;
+    color: white;
+}
+
+.no-border{
+    border-width: 0px !important;
+    border-style: none;
+}
+
+.btn-pay{
+    color: white !important;
+    background-color: #4C4C6D !important;
+}
