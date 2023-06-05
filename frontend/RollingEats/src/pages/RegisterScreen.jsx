@@ -24,6 +24,7 @@ const RegisterScreen = () => {
 			name: nameInput,
       email: emailInput,
       password: passwordInput,
+      role: "USER_ROLE"
     };
     const resp = await register(data);
     navigate("/login");
