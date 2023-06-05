@@ -1,0 +1,15 @@
+.img-logo {
+  width: 175px;
+}
+
+.red-white-text:hover{
+  color: white !important;
+}
+
+.navbar-custom{
+  background-color: #4C4C6D !important;
+}
+
+.hover-custom:hover{
+  background-color: #F2C94C !important;
+}
