@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/auth/login";
+const url = "https://rollingeatsbackend-production.up.railway.app/api/auth/login";
 
 export const login = async (loginData) => {
   try {

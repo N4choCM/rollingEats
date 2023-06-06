@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/search";
+const url = "https://rollingeatsbackend-production.up.railway.app/api/search";
 const token = JSON.parse(localStorage.getItem("token"));
 
 export const searchData = async (collection, term) => {
