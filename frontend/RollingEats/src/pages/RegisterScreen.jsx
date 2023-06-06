@@ -35,7 +35,7 @@ const RegisterScreen = () => {
     }
   
     if (emailInput.trim() === "") {
-      setEmailError("Por favor, introduzca un email válido.");
+      setEmailError("Por favor, introduzca un email válido (example@example.com).");
       setLoading(false);
       return;
     }
