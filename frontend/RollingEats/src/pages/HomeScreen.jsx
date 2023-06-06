@@ -27,11 +27,17 @@ const HomeScreen = ({ user }) => {
 		setMenus(menus);
 	};
 
-	const handleInputChange = (event) => {
+	const handleInputChange = async (event) => {
 		const value = event.target.value;
 		setSearchTerm(value);
-		searchData("menus", searchTerm);
+		await searchData("menus", searchTerm);
 	};
+
+	const filteredMenus = menus
+    ? menus.filter((menu) =>
+        menu.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
 
 	return (
 		<>
@@ -190,7 +196,7 @@ const HomeScreen = ({ user }) => {
 							</>
 						) : (
 							<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-3 ">
-								{menus.map((menu) => (
+								{filteredMenus.map((menu) => (
 									<MenuCard key={menu.name} menuProp={menu} uid={uid} />
 								))}
 							</div>
