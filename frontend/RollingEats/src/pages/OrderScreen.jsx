@@ -81,19 +81,6 @@ const OrderScreen = ({ user }) => {
 								<OrderTableRows orderProp={order} uid={uid} onOrderDelete={updateOrders} />
 							))}
 						</tbody>
-						<tfoot>
-							<tr className="no-border">
-								<th className="no-border text-center"></th>
-								<th className="no-border text-center"></th>
-								<th className="text-center border-bottom">
-									Total:{" "}
-								</th>
-								<th className="text-center border-bottom">
-									{price} €
-								</th>
-								<th className="no-border text-center"></th>
-							</tr>
-						</tfoot>
 					</table>
 				</div>
 			)}
