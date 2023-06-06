@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const FooterApp = () => {
 	return (
-    <footer>
+    <footer className="margin-footer">
       <div className="footer-custom">
       <div className="container">
         <div className="row d-flex flex-column flex-md-row gap-5 py-5">

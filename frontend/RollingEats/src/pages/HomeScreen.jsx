@@ -143,24 +143,8 @@ const HomeScreen = ({ user }) => {
 					</div>
 				</section>
 
-				<div className="bg-home min-vh-100 mb-5">
+				<div className="bg-home min-vh-100 my-5">
 					<div className="container">
-						<div className="row pt-5 w-100 mb-4">
-							<div className="col-12  ">
-								<h1 className="title">¿Tienes hambre?</h1>
-								<p className="texto">
-									Rolling Eats ofrece menús en línea para
-									todos los gustos, desde opciones
-									vegetarianas hasta comida gourmet y para
-									dietas específicas. La información detallada
-									sobre ingredientes y valores nutricionales
-									ayuda a tomar decisiones informadas. La
-									compra en línea es cómoda y práctica, ideal
-									para personas con horarios ocupados o
-									limitaciones físicas.
-								</p>
-							</div>
-						</div>
 						<div className="row">
 							<div className="col col-md-6 col-lg-4">
 								<div className="input-group mb-3 ">
