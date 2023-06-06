@@ -26,7 +26,7 @@ const RegisterScreen = () => {
   
     // Validar los campos
     if (nameInput.trim() === "") {
-      setNameError("Por favor, introduce un nombre de usuario válido.");
+      setNameError("Por favor, introduzca un nombre de usuario válido.");
       setLoading(false);
       return;
     }
@@ -35,22 +35,23 @@ const RegisterScreen = () => {
     }
   
     if (emailInput.trim() === "") {
-      setEmailError("Por favor, introduce un email válido.");
+      setEmailError("Por favor, introduzca un email válido.");
       setLoading(false);
       return;
     }
     if (emailInput.trim() != "" && emailInput.trim() != null){
-      setNameError(null)
+      setEmailError(null)
     }
   
-    if (passwordInput.trim() === "") {
-      setPasswordError("Por favor, introduce una contraseña válida.");
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!regex.test(passwordInput)) {
+      setPasswordError("La contraseña debe contener al menos 8 caracteres, una mayúscula, una minñuscula y un número.");
       setLoading(false);
       return;
     }
 
-    if (passwordInput.trim() != "" && passwordInput.trim() != null){
-      setNameError(null)
+    if (regex.test(passwordInput) && passwordInput.trim() != null){
+      setPasswordError(null)
     }
   
     const data = {
