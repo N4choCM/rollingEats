@@ -49,8 +49,8 @@ const OrderScreen = ({ user }) => {
 			<br />
 			{orders.length == 0 ? (
 				<>
-				<div class="spinner-border custom-spinner" role="status">
-					<span class="visually-hidden">Loading...</span>
+				<div className="spinner-border custom-spinner" role="status">
+					<span className="visually-hidden">Loading...</span>
 				</div>
 				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 				</>
@@ -81,19 +81,6 @@ const OrderScreen = ({ user }) => {
 								<OrderTableRows orderProp={order} uid={uid} onOrderDelete={updateOrders} />
 							))}
 						</tbody>
-						<tfoot>
-							<tr className="no-border">
-								<th className="no-border text-center"></th>
-								<th className="no-border text-center"></th>
-								<th className="text-center border-bottom">
-									Total:{" "}
-								</th>
-								<th className="text-center border-bottom">
-									{price} €
-								</th>
-								<th className="no-border text-center"></th>
-							</tr>
-						</tfoot>
 					</table>
 				</div>
 			)}

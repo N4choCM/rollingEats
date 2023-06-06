@@ -1,5 +1,6 @@
 import React from "react";
 import image from "../assets/404.svg";
+import "../css/error.css";
 
 const ErrorScreen = () => {
 	return (
@@ -7,7 +8,7 @@ const ErrorScreen = () => {
 		<br /> <br /><br /><br /> <br />
 		<div className="container">
 			<div className="row">
-				<div className="col col-lg-6 my-auto">
+				<div className="col col-lg-6 my-auto text-rolling-eats">
 					<h1>
 						¡Oops! Parece que no hemos encontrado lo que buscabas.
 						😢

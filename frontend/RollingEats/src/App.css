@@ -1,12 +1,33 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-  }
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-  .custom-spinner{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: #4C4C6D;
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+	flex: 1;
+}
+
+footer {
+	flex-shrink: 0;
+}
+
+.custom-spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: #4c4c6d;
 }

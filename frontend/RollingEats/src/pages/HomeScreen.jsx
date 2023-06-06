@@ -8,9 +8,7 @@ import "../css/home.css";
 import MenuPagination from "../components/MenuPagination";
 
 const HomeScreen = ({ user }) => {
-	console.log(user);
 	const { uid } = user;
-	console.log(uid);
 
 	const [menus, setMenus] = useState(null);
 	const [searchTerm, setSearchTerm] = useState("");
@@ -21,19 +19,25 @@ const HomeScreen = ({ user }) => {
 	useEffect(() => {
 		setMenus(null);
 		findMenus();
-	}, []);
+	}, [page]);
 
 	const findMenus = async () => {
-		const { menus, total } = await getMenus(page, page + 12);
+		const { menus, total } = await getMenus(page);
 		setTotalMenus(total);
 		setMenus(menus);
 	};
 
-	const handleInputChange = (event) => {
+	const handleInputChange = async (event) => {
 		const value = event.target.value;
 		setSearchTerm(value);
-		searchData("menus", searchTerm);
+		await searchData("menus", searchTerm);
 	};
+
+	const filteredMenus = menus
+    ? menus.filter((menu) =>
+        menu.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
 
 	return (
 		<>
@@ -139,24 +143,8 @@ const HomeScreen = ({ user }) => {
 					</div>
 				</section>
 
-				<div className="bg-home min-vh-100 mb-5">
+				<div className="bg-home min-vh-100 my-5">
 					<div className="container">
-						<div className="row pt-5 w-100 mb-4">
-							<div className="col-12  ">
-								<h1 className="title">¿Tienes hambre?</h1>
-								<p className="texto">
-									Rolling Eats ofrece menús en línea para
-									todos los gustos, desde opciones
-									vegetarianas hasta comida gourmet y para
-									dietas específicas. La información detallada
-									sobre ingredientes y valores nutricionales
-									ayuda a tomar decisiones informadas. La
-									compra en línea es cómoda y práctica, ideal
-									para personas con horarios ocupados o
-									limitaciones físicas.
-								</p>
-							</div>
-						</div>
 						<div className="row">
 							<div className="col col-md-6 col-lg-4">
 								<div className="input-group mb-3 ">
@@ -185,15 +173,15 @@ const HomeScreen = ({ user }) => {
 						</div>
 						{!menus ? (
 							<>
-							<div class="spinner-border custom-spinner" role="status">
-								<span class="visually-hidden">Loading...</span>
+							<div className="spinner-border custom-spinner" role="status">
+								<span className="visually-hidden">Loading...</span>
 							</div>
 							<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 							</>
 						) : (
 							<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-3 ">
-								{menus.map((menu) => (
-									<MenuCard menuProp={menu} uid={uid} />
+								{filteredMenus.map((menu) => (
+									<MenuCard key={menu.name} menuProp={menu} uid={uid} />
 								))}
 							</div>
 						)}
@@ -204,6 +192,7 @@ const HomeScreen = ({ user }) => {
 										total={totalMenus}
 										page={page}
 										setPage={setPage}
+										findMenus={findMenus}
 									/>
 								)}
 							</div>

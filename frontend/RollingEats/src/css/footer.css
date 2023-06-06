@@ -10,3 +10,8 @@
 .social-hover:hover {
     color: #F2C94C !important;
 }
+
+.margin-footer{
+    margin-top: auto !important;
+    margin-bottom: 0px !important;
+}

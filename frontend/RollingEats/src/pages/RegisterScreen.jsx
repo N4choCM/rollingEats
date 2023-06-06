@@ -13,6 +13,9 @@ const RegisterScreen = () => {
   const [emailInput, setEmailInput] = useState("");
 	const [nameInput, setNameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
 	const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -20,16 +23,50 @@ const RegisterScreen = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
+  
+    // Validar los campos
+    if (nameInput.trim() === "") {
+      setNameError("Por favor, introduzca un nombre de usuario válido.");
+      setLoading(false);
+      return;
+    }
+    if (nameInput.trim() != "" && nameInput.trim() != null){
+      setNameError(null)
+    }
+  
+    if (emailInput.trim() === "") {
+      setEmailError("Por favor, introduzca un email válido (example@example.com).");
+      setLoading(false);
+      return;
+    }
+    if (emailInput.trim() != "" && emailInput.trim() != null){
+      setEmailError(null)
+    }
+  
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!regex.test(passwordInput)) {
+      setPasswordError("La contraseña debe contener al menos 8 caracteres, una mayúscula, una minñuscula y un número.");
+      setLoading(false);
+      return;
+    }
+
+    if (regex.test(passwordInput) && passwordInput.trim() != null){
+      setPasswordError(null)
+    }
+  
     const data = {
-			name: nameInput,
+      name: nameInput,
       email: emailInput,
       password: passwordInput,
+      role: "USER_ROLE"
     };
+  
     const resp = await register(data);
     navigate("/login");
-		setResult(resp)
+    setResult(resp);
     setLoading(false);
   };
+  
 
 	return (
 <div className="body-bg d-flex align-self-center align-items-center">
@@ -54,6 +91,7 @@ const RegisterScreen = () => {
                   onChange={(e) => setNameInput(e.target.value)}
                   maxLength={40}
                 />
+                {nameError && <p className="text-danger">{nameError}</p>}
               </div>
               <div className="mt-3 text-white">
                 <label className="fw-bold">Email</label>
@@ -64,6 +102,7 @@ const RegisterScreen = () => {
                   onChange={(e) => setEmailInput(e.target.value)}
                   maxLength={40}
                 />
+                {emailError && <p className="text-danger">{emailError}</p>}
               </div>
               <div className="mt-3 text-white">
                 <label className="fw-bold">Contraseña</label>
@@ -74,6 +113,7 @@ const RegisterScreen = () => {
                   onChange={(e) => setPasswordInput(e.target.value)}
                   maxLength={40}
                 />
+                {passwordError && <p className="text-danger">{passwordError}</p>}
               </div>
               <div className="mt-3 d-grid text-white pb-2">
                 <button className="btn btn-outline-warning" disabled={loading && true}>
@@ -88,11 +128,6 @@ const RegisterScreen = () => {
               </Link>
 
             </form>
-            {result?.msg && (
-              <div className="mt-2">
-                <LoginMessageApp message={result.msg} />
-              </div>
-            )}
           </div>
         </div>
       </div>
