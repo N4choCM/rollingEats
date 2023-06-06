@@ -8,9 +8,7 @@ import "../css/home.css";
 import MenuPagination from "../components/MenuPagination";
 
 const HomeScreen = ({ user }) => {
-	console.log(user);
 	const { uid } = user;
-	console.log(uid);
 
 	const [menus, setMenus] = useState(null);
 	const [searchTerm, setSearchTerm] = useState("");
@@ -21,10 +19,10 @@ const HomeScreen = ({ user }) => {
 	useEffect(() => {
 		setMenus(null);
 		findMenus();
-	}, []);
+	}, [page]);
 
 	const findMenus = async () => {
-		const { menus, total } = await getMenus(page, page + 12);
+		const { menus, total } = await getMenus(page);
 		setTotalMenus(total);
 		setMenus(menus);
 	};
@@ -185,15 +183,15 @@ const HomeScreen = ({ user }) => {
 						</div>
 						{!menus ? (
 							<>
-							<div class="spinner-border custom-spinner" role="status">
-								<span class="visually-hidden">Loading...</span>
+							<div className="spinner-border custom-spinner" role="status">
+								<span className="visually-hidden">Loading...</span>
 							</div>
 							<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 							</>
 						) : (
 							<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-3 ">
 								{menus.map((menu) => (
-									<MenuCard menuProp={menu} uid={uid} />
+									<MenuCard key={menu.name} menuProp={menu} uid={uid} />
 								))}
 							</div>
 						)}
@@ -204,6 +202,7 @@ const HomeScreen = ({ user }) => {
 										total={totalMenus}
 										page={page}
 										setPage={setPage}
+										findMenus={findMenus}
 									/>
 								)}
 							</div>

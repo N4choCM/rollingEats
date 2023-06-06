@@ -10,8 +10,6 @@ const MenuPagination = ({ total, page, setPage }) => {
   }
 
   const nextPage = () => {
-    // This does not allows the user to go to the following page 
-    // if he/she is already in the last page.
     if (total - page >= 12) {
       setPage(page + 12);
     }
