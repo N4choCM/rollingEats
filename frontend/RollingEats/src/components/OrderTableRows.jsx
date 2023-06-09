@@ -16,24 +16,24 @@ const OrderTableRows = ({ orderProp, uid, onOrderDelete }) => {
   const [oid, setOid] = useState(null);
 
   // Cancel Order
-  const cancelOrder = async (id) => {
+  const cancelOrder = async (orderProp) => {
 		MySwal.fire({
-			title: `¿Está seguro de que quiere inactivar el pedido con ID ${id}?`,
+			title: `¿Está seguro de que quiere cancelar el pedido ${orderProp.menu}?`,
 			showDenyButton: true,
 			showCancelButton: false,
 			confirmButtonText: "Sí",
 			denyButtonText: `No`,
 		}).then((result) => {
 			if (result.isConfirmed) {
-				deleteOrderById(id).then((result) => {
+				deleteOrderById(orderProp._id).then((result) => {
 					fetchData();
           if (onOrderDelete) {
             onOrderDelete();
           }
-					MySwal.fire("", `${result.msg}`, "success");
+					MySwal.fire("", `Pedido cancelado correctamente.`, "success");
 				});
 			} else if (result.isDenied) {
-				MySwal.fire("El pedido no pudo ser inactivado.", "", "info");
+				MySwal.fire(`El pedido ${orderProp.menu} no ha sido cancelado.`, "", "info");
 			}
 		});
 	};
@@ -65,7 +65,7 @@ const menu = menus.find((menu) => menu.name === orderProp.menu);
       <td className="text-center">{menu && menu.name }</td>
       <td className={orderProp.delivered ? "text-center bg-green" : "text-center bg-red"}>{orderProp.delivered ? "Sí" : "No"}</td>
       <td className="text-center">{menu && menu.price } €</td>
-      <td className="text-center"><button className="btn" onClick={() => cancelOrder(orderProp._id)}>        <i
+      <td className="text-center"><button className="btn" onClick={() => cancelOrder(orderProp)}>        <i
           className="fa fa-trash text-danger"
           aria-hidden="true"
         ></i></button>
