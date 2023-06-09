@@ -75,7 +75,7 @@ const RegisterScreen = () => {
 
 	return (
 		<div className="body-bg d-flex align-self-center align-items-center">
-			<div className="bg-dark bg-gradient rounded w-50 mx-auto py-2">
+			<div className="bg-dark bg-gradient rounded w-50 mx-auto p-4">
 				<div className="container">
 					<div className="row">
 						<div className="col-12 col-md-6 offset-md-3 card-login">
