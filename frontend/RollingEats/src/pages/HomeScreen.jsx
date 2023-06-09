@@ -73,7 +73,7 @@ const HomeScreen = ({ user }) => {
 						<div className="carousel-inner">
 							<div className="carousel-item active">
 								<img
-									src="https://enlacocina.b-cdn.net/wp-content/uploads/2019/01/hamburguesas-gourmet.jpg.webp"
+									src="https://panamarbakery.com/public/Image/2021/1/bodegon_burger_cristal_13799_ExtraGrande.jpg"
 									className="d-block w-100"
 									alt="Hamburguesa"
 								/>
