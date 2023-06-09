@@ -39,7 +39,7 @@ const OrderScreen = ({ user }) => {
 
 	const updateOrders = () => {
 		findOrdersByUser();
-	  };
+	};
 
 	return (
 		<>
@@ -49,10 +49,20 @@ const OrderScreen = ({ user }) => {
 			<br />
 			{orders.length == 0 ? (
 				<>
-				<div className="spinner-border custom-spinner" role="status">
-					<span className="visually-hidden">Loading...</span>
-				</div>
-				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<div>
+						<h1 className="text-center txt-rolling-eats d-flex justify-content-center align-items-center">
+							No has realizado todavía ningún pedido, ¿es que no
+							tienes hambre?
+						</h1>
+					</div>
+					<br />
+					<br />
+					<br />
+					<br />
 				</>
 			) : (
 				<div className="m-5 table-responsive">
@@ -78,7 +88,11 @@ const OrderScreen = ({ user }) => {
 						</thead>
 						<tbody>
 							{orders?.map((order) => (
-								<OrderTableRows orderProp={order} uid={uid} onOrderDelete={updateOrders} />
+								<OrderTableRows
+									orderProp={order}
+									uid={uid}
+									onOrderDelete={updateOrders}
+								/>
 							))}
 						</tbody>
 					</table>
