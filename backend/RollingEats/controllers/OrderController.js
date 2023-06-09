@@ -92,7 +92,7 @@ const deleteOrderById = async (req, res) => {
 	);
 
 	res.json({
-		msg: `El pedido con ID ${deletedOrder.id} ha sido inactivado correctamente.`,
+		msg: `Pedido cancelado correctamente.`,
 	});
 };
 
